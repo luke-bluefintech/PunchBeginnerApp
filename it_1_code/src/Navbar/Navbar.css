@@ -34,36 +34,6 @@
     background: var(--color-gray);
   }
   
-  .navigation-sp3-letters-wrapper {
-    margin-top: 10px;
-    display: flex;
-    position: relative;
-    z-index: .5;
-  }
-  
-  .navigation-s3-letter-s,
-  .navigation-s3-letter-p {
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 44px;
-    color: white;
-    width: 30px;
-    margin: none;
-  }
-  
-  .navigation-s3-digit {
-    position: relative;
-    color: white;
-    line-height: 34px;
-    color: white;
-    width: 30px;
-    max-width: 117px;
-    font-weight: 400;
-    font-size: 20px;
-    margin: none;
-    right: .1rem;
-  }
-  
   .s3-letter-holder {
     position: fixed;
     top: 1.3rem;
