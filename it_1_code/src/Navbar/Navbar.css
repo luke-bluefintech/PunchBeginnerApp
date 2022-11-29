@@ -1,6 +1,22 @@
 :root {
     --color-gray: rgb(240, 240, 240);
   }
+
+  .punch-beginner {
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+    padding-top: .3rem;
+  }
+
+  .content-container {
+    position: relative;
+    bottom: .2rem;
+    padding: 0 2rem 0 1rem;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    align-items: center;
+  }
   
   .navigation-wrapper {
     background: var(--color-gray);
@@ -130,8 +146,8 @@
   .navbar {
     position: fixed;
     padding: 15px 10px; 
-    background-image: linear-gradient(to right, rgb(47, 119, 192), rgb(42, 87, 131));
-    height: 5rem;
+    background-image: linear-gradient(to right, rgb(243, 207, 198), rgb(219, 168, 155));
+    height: 3rem;
     width: 100%;
     top: 0rem;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);

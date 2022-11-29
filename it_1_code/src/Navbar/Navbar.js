@@ -18,31 +18,27 @@ function Navbar() {
         <div className="navigation-wrapper">
             <nav className="navbar  navbar-expand-lg navbar-light bg-light" id="navbar"
                 style={{ backgroundColor: "rgba(42,87,131,1)" }}>
-                <img src="https://sp3-data-vis.s3.amazonaws.com/Bluefin_Logo_SP3_TP.png"
-                    alt="Transparent Bluefin Logo Full White" style={{ width: "15em" }} />
-                <div className="s3-letter-holder">
-                    <div className="company-name">
-                        {localStorage.getItem("companyName")}
-                    </div>
-                </div>
-                <div className="nav-bar--dropdown">
-                    <button
-                        className="dropbtn"
-                        onMouseOver={MouseOver}
-                        onMouseOut={MouseOut}
-                    >
-                        <div className="button-content">
-                            {userName + " "}
-                            {<FontAwesomeIcon icon={faCaretDown} />}
-                        </div>
-                    </button>
+                <div className="content-container">
+                    <div className="punch-beginner">PunchBeginner</div>
+                    <div className="nav-bar--dropdown">
+                        <button
+                            className="dropbtn"
+                            onMouseOver={MouseOver}
+                            onMouseOut={MouseOut}
+                        >
+                            <div className="button-content">
+                                {userName + " "}
+                                {<FontAwesomeIcon icon={faCaretDown} />}
+                            </div>
+                        </button>
 
-                    <div
-                        className="dropdown-content"
-                        onMouseOver={MouseOver}
-                        onMouseOut={MouseOut}
-                    >
-                        <a className="link-logout" >Sign Out</a>
+                        <div
+                            className="dropdown-content"
+                            onMouseOver={MouseOver}
+                            onMouseOut={MouseOut}
+                        >
+                            <a className="link-logout" >Sign Out</a>
+                        </div>
                     </div>
                 </div>
             </nav>
