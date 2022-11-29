@@ -1,12 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Login from "./login/Login";
+import Navbar from "./navbar/Navbar";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <h1>Test to make sure this works</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="navbar" element={<Navbar />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
