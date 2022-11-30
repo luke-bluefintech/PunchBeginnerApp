@@ -17,10 +17,10 @@ tr {
   }
 
   /* Set a style for all buttons */
-button {
+pledgebutton {
     background-color: #7393B3;
     color: white;
-    padding: 14px 20px;
+    padding: 6px 12px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
