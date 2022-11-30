@@ -4,7 +4,7 @@ form {
 }
 
 /* input for pledge amount */
-input[type=text] {
+input[type=amt] {
     width: 10%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -32,10 +32,10 @@ submitbutton {
     border: none;
     cursor: pointer;
 
-    top: 11%;
-    left: 55%;
-    width: 100px;
-    height: 40px;
+    top: 45%;
+    left: 1.1%;
+    width: 52px;
+    height: 25px;
     position: absolute;
 
 }
