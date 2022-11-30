@@ -7,6 +7,7 @@ import Dashboard from "./dashboard/Dashboard";
 import ViewProject from "./viewproject/ViewProject";
 import Pledge from "./pledge/Pledge";
 import Register from "./register/Register";
+import NewProject from "./newproject/NewProject";
 
 export default function App() {
 
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="viewproject" element={<ViewProject />} />
           <Route path="pledge" element={<Pledge />} />
           <Route path="register" element={<Register />} />
+          <Route path="newproject" element={<NewProject />} />
         </Route>
       </Routes>
     </BrowserRouter>
