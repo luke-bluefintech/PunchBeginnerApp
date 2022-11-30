@@ -32,5 +32,6 @@ button:hover {
 
 /* Add padding to containers */
 .container {
+    margin-top: 5%;
     padding: 16px;
 }
