@@ -116,7 +116,7 @@
   .navbar {
     position: fixed;
     padding: 15px 10px; 
-    background-image: linear-gradient(to right, rgb(243, 207, 198), rgb(219, 168, 155));
+    background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(240, 180, 195));
     height: 3rem;
     width: 100%;
     top: 0rem;
