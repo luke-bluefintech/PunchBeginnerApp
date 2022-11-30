@@ -5,10 +5,13 @@ function ViewProject() {
         name: "Big Fork",
         description: "Funding for Sophie's big fork.",
         goal: "500 dollars",
-        color: "white" };
+        genre: "Startup",
+        creator: "Sophia Cheng",
+        deadline: "Tomorrow"
+    };
 
     return (
-        <div>
+        <div className="info-div">
             {/* img below will have src='url of project image' */}
             <img className='heading--logo' />
             <br></br>
@@ -21,14 +24,17 @@ function ViewProject() {
             <label className="label-text">Goal: </label>
             {project?.goal}
             <br></br>
-            <label className="label-text">Project Name: </label>
-            {project?.name}
+            <label className="label-text">Genre: </label>
+            {project?.genre}
             <br></br>
-            <label className="label-text">Project Name: </label>
-            {project?.name}
+            <label className="label-text">Creator: </label>
+            {project?.creator}
             <br></br>
+            <label className="label-text">Deadline: </label>
+            {project?.deadline}
+            <br></br>
+            <button className="pledgebutton-vp" type="pledge">Pledge</button>
         </div>
-
     )
 };
 

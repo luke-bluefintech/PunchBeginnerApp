@@ -9,6 +9,7 @@ import Pledge from "./pledge/Pledge";
 import Register from "./register/Register";
 
 export default function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -26,4 +27,4 @@ export default function App() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(<Layout />);
