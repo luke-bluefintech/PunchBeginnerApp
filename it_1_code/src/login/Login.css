@@ -35,3 +35,8 @@ button:hover {
     margin-top: 5%;
     padding: 16px;
 }
+
+.container {
+    /* Center horizontally*/
+    text-align: center;
+  }

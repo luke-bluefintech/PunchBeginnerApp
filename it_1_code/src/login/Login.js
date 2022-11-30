@@ -6,7 +6,7 @@ function Login() {
             <label for="uname"><b>Username</b><br></br></label>
             <input type="text" placeholder="Enter Username:" name="uname" required />
 
-            <label for="psw"><b><br></br>Password<br></br></b></label>
+            <label for="psw"><p><br></br>Password<br></br></p></label>
             <input type="password" placeholder="Enter Password:" name="psw" required />
 
             <label>
