@@ -14,15 +14,12 @@ const Layout = () => {
                     </ul><li>
                         <Link to="/dashboard">Dashboard</Link>
                     </li>
-<<<<<<< HEAD
                     <li>
-                        <Link to="/table">Table</Link>
+                        <Link to="/viewproject">View Project</Link>
                     </li>
                     <li>
                         <Link to="/pledge">Pledge</Link>
                     </li>
-=======
->>>>>>> 210e7d4df77292d11f55c6b6329d5901c4a9b592
                 </ul>
             </nav>
 
