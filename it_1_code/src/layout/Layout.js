@@ -8,7 +8,7 @@ import Pledge from "../pledge/Pledge";
 const Layout = () => {
 
     return (
-        <div>
+        <div style={{ marginTop: "7%" }}>
             <Navbar />
             <Login />
         </div>
