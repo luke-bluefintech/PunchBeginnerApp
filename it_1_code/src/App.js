@@ -4,6 +4,7 @@ import Layout from "./layout/Layout";
 import Login from "./login/Login";
 import Navbar from "./navbar/Navbar";
 import Dashboard from "./dashboard/Dashboard";
+import ViewProject from "./viewproject/ViewProject";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Route exact path="navbar" element={<Navbar />} />
           <Route path="login" element={<Login />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="viewproject" element={<ViewProject />} />
         </Route>
       </Routes>
     </BrowserRouter>
