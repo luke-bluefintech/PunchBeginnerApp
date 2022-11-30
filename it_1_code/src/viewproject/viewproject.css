@@ -16,7 +16,16 @@
     line-height: 210%;
 }
 
-.star {
-    font-style: normal;
-    color: rgb(47, 119, 192);
+.pledgebuttonp-vp {
+    background-color: #7393B3;
+    color: white;
+    padding: 6px 12px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 5%;
+}
+
+.info-div {
+    margin-left: 1rem;
 }
