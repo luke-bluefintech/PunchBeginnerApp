@@ -1,0 +1,42 @@
+/* Bordered form */
+form {
+    border: 3px solid #f1f1f1;
+}
+
+/* Inputs for names, username, password */
+input[type=text],
+input[type=password] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for sign up button */
+signupbutton {
+    background-color: #7393B3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+
+    top: 80%;
+    left: 1.1%;
+    width: 60px;
+    height: 25px;
+    position: absolute;
+}
+
+/* Add a hover effect for button */
+signupbutton:hover {
+    opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}

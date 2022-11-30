@@ -20,6 +20,9 @@ const Layout = () => {
                     <li>
                         <Link to="/pledge">Pledge</Link>
                     </li>
+                    <li>
+                        <Link to="/register">Register</Link>
+                    </li>
                 </ul>
             </nav>
 
