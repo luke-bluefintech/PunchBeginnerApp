@@ -14,10 +14,10 @@ function Login() {
                 <a>Remember me?<br></br></a>
             </label>
 
-            <button type="submit">Login</button>
+            <button type="login">Login</button>
 
             <label for="new"><b><br></br>New User?<br></br></b></label>
-            <submitbutton type="register">Register Here</submitbutton>
+            <button type="register">Register Here</button>
         </div>
     )
 }
