@@ -31,13 +31,13 @@ submitbutton {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 10%;
 
-    top:45%;
-    left:1.1%;
-    width:50px;
-    height:25px;
+    top: 11%;
+    left: 55%;
+    width: 100px;
+    height: 40px;
     position: absolute;
+
 }
 
 /* Add a hover effect for submit button */
