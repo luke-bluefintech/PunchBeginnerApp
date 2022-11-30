@@ -8,6 +8,7 @@ import ViewProject from "./viewproject/ViewProject";
 import Pledge from "./pledge/Pledge";
 
 export default function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -24,4 +25,4 @@ export default function App() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(<Layout />);
