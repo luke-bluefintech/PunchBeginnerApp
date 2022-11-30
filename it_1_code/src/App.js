@@ -5,6 +5,7 @@ import Login from "./login/Login";
 import Navbar from "./navbar/Navbar";
 import Dashboard from "./dashboard/Dashboard";
 import ViewProject from "./viewproject/ViewProject";
+import Pledge from "./pledge/Pledge";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="login" element={<Login />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="viewproject" element={<ViewProject />} />
+          <Route path="pledge" element={<Pledge />} />
         </Route>
       </Routes>
     </BrowserRouter>

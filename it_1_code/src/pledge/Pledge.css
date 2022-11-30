@@ -1,0 +1,51 @@
+/* Bordered form */
+form {
+    border: 3px solid #f1f1f1;
+}
+
+/* input for pledge amount */
+input[type=text] {
+    width: 10%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* input for description */
+input[type=description] {
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for submit button */
+submitbutton {
+    background-color: #7393B3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+
+    top:45%;
+    left:1.1%;
+    width:50px;
+    height:25px;
+    position: absolute;
+}
+
+/* Add a hover effect for submit button */
+submitbutton:hover {
+    opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}
