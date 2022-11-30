@@ -3,10 +3,10 @@ form {
     border: 3px solid #f1f1f1;
 }
 
-/* Full-width inputs */
+/* Inputs for username and password */
 input[type=text],
 input[type=password] {
-    width: 100%;
+    width: 30%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -14,7 +14,7 @@ input[type=password] {
     box-sizing: border-box;
 }
 
-/* Set a style for all buttons */
+/* Set a style for buttons */
 button {
     background-color: #7393B3;
     color: white;

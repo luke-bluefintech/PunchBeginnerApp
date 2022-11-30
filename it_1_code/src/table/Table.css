@@ -26,3 +26,8 @@ pledgebutton {
     cursor: pointer;
     width: 80%;
 }
+
+/* Add a hover effect for buttons */
+pledgebutton:hover {
+    opacity: 0.8;
+}
