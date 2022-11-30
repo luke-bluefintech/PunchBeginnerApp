@@ -7,18 +7,10 @@ import Pledge from "../pledge/Pledge";
 
 const Layout = () => {
 
-    var showLogin = true;
-    var showDashboard = false;
-    var showViewProject = false;
-    var showPledge = false;
-
     return (
         <div>
             <Navbar />
-            {showLogin ? <Login /> : null}
-            {showDashboard ? <Dashboard /> : null}
-            {showViewProject ? <ViewProject /> : null}
-            {showPledge ? <Pledge /> : null}
+            <Login />
         </div>
     )
 };
