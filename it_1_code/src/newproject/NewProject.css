@@ -1,0 +1,50 @@
+/* Bordered form */
+form {
+    border: 3px solid #f1f1f1;
+}
+
+/* Inputs for shorttext and longtext */
+input[type=shorttext] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type=longtext] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 2px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for buttons */
+/*button {
+    background-color: #7393B3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+}
+
+/* Add a hover effect for buttons 
+button:hover {
+    opacity: 0.8;
+}*/
+
+/* Add padding to containers */
+.container {
+    margin-top: 5%;
+    padding: 16px;
+}
+
+.container {
+    /* Center horizontally*/
+    text-align: center;
+  }
