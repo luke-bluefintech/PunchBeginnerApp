@@ -13,6 +13,8 @@ const Layout = () => {
                     </li>
                     <li>
                         <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                    <li>
                         <Link to="/table">Table</Link>
                     </li>
                 </ul>
