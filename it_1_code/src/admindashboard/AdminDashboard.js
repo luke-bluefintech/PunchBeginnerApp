@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
-import './Dashboard.css';
+import './AdminDashboard.css';
 import ViewProject from "../viewproject/ViewProject";
 import NewProject from "../newproject/NewProject";
 import Pledge from "../pledge/Pledge";
@@ -13,13 +13,13 @@ const instance = axios.create({
 }
 );
 
-function Dashboard() {
+function AdminDashboard() {
 
     const [showViewProject, setShowViewProject] = useState(false);
     const [showPledge, setShowPledge] = useState(false);
     const [showNewProject, setShowNewProject] = useState(false);
 
-    let email = "";
+    let password = "";
 
     const fillTable = (projects) => {
         var element = document.getElementsByClassName("data"), index;
@@ -30,11 +30,11 @@ function Dashboard() {
         projects.forEach(project => {
             // Creating the Row
             var tr = document.createElement("tr");
-            tr.onclick = () => {
-                ViewProject.email = email;
+            /**tr.onclick = () => {
+                ViewProject.password = password;
                 ViewProject.project_name = project.project_name;
                 setShowViewProject(true);
-            };
+            };*/
             tr.className = "data";
             // Creating the Cells
             var projectName = document.createElement("td");
@@ -63,7 +63,7 @@ function Dashboard() {
     }
 
     const fetchAllProjects = () => {
-        instance.post("/designer/project/list", { "designer_email": Dashboard.email })
+        instance.post("/admin/project/list", { "admin_password": AdminDashboard.password })
             .then(function (response) {
                 fillTable(response.data.projects)
             })
@@ -86,8 +86,8 @@ function Dashboard() {
                     placeholder="Search for Projects" />
                 <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
                 <button className="button-create-project" onClick={() => {
-                    NewProject.email = Dashboard.email;
-                    setShowNewProject(true);
+                    //NewProject.password = AdminDashboard.password;
+                    //setShowNewProject(true);
                 }}>Create New Project</button>
 
                 {/*Table that displays projects*/}
@@ -96,7 +96,6 @@ function Dashboard() {
                         <th>Project</th>
                         <th>Goal Amount</th>
                         <th>Amount Reached</th>
-                        <th>Launch Project?</th>
                     </tr>
                 </table>
             </div>
@@ -111,4 +110,4 @@ function Dashboard() {
     )
 };
 
-export default Dashboard;
+export default AdminDashboard;

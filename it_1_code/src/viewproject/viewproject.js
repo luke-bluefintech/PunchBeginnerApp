@@ -6,7 +6,6 @@ import './ViewProject.css';
 import CreatePledge from "../createpledge/CreatePledge";
 
 function ViewProject() {
-
     const [showPledge, setShowPledge] = useState(false);
     const [showCreatePledge, setShowCreatePledge] = useState(false);
     const [showDashboard, setShowDashboard] = useState(false);
@@ -20,30 +19,32 @@ function ViewProject() {
     let email = "";
 
     const fillData = (projectData) => {
+        console.log(document);
+        var element = document.getElementsByClassName("data"), index;
+        console.log(element);
+        for (index = element.length - 1; index >= 0; index--) {
+            element[index].parentNode.removeChild(element[index]);
+        }
         // Project Name
         var projectName = document.getElementById("project-name");
-        var projectNameTxt = document.createTextNode(projectData.project_name);
-        projectName.appendChild(projectNameTxt);
+        projectName.innerHTML = projectData.project_name;
+
+        //projectName.appendChild(projectNameTxt);
         //Project Description
         var projectDesc = document.getElementById("project-description");
-        var projectDescTxt = document.createTextNode(projectData.project_description);
-        projectDesc.appendChild(projectDescTxt);
+        projectDesc.innerHTML = projectData.project_description;
         // Goal
         var projectGoal = document.getElementById("project-goal");
-        var projectGoalTxt = document.createTextNode(projectData.project_goal);
-        projectGoal.appendChild(projectGoalTxt);
+        projectGoal.innerHTML = projectData.project_goal;
         // Genre
         var projectGenre = document.getElementById("project-genre");
-        var projectGenreTxt = document.createTextNode(projectData.project_type);
-        projectGenre.appendChild(projectGenreTxt);
+        projectGenre.innerHTML = projectData.project_type;
         // Creator
         var projectCreator = document.getElementById("project-creator");
-        var projectCreatorTxt = document.createTextNode(projectData.designer_name);
-        projectCreator.appendChild(projectCreatorTxt);
+        projectCreator.innerHTML = projectData.designer_name;
         // Deadline
         var projectDeadline = document.getElementById("project-deadline");
-        var projectDeadlineTxt = document.createTextNode(projectData.project_deadline);
-        projectDeadline.appendChild(projectDeadlineTxt);
+        projectDeadline.innerHTML = projectData.project_deadline;
 
         projectData.project_pledges.forEach(pledge => {
             // Creating the Row

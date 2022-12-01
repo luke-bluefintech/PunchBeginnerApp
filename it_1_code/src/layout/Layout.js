@@ -1,9 +1,10 @@
-import { Outlet, Link } from "react-router-dom";
 import Login from "../login/Login";
 import Navbar from '../navbar/Navbar';
 
-const Layout = () => {
+console.log("LAYOUT");
 
+const Layout = () => {
+    console.log("now we are here");
     return (
         <div style={{ marginTop: "7%" }}>
             <Navbar />
