@@ -14,6 +14,7 @@ function Pledge() {
             <label for="describe"><b><br></br>Description<br></br></b></label>
             <input type="description" placeholder="How should this pledge be used?" name="describe" required />
 
+            <label for="space"><b><br></br><br></br></b></label>
             <submitbutton onClick={() => setShowDashboard(true)} type="submitbutton">Submit</submitbutton>
         </div>
     );
