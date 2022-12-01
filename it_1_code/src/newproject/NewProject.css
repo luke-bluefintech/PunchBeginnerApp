@@ -3,17 +3,9 @@ form {
     border: 3px solid #f1f1f1;
 }
 
-/* Inputs for shorttext and longtext */
-input[type=shorttext] {
-    width: 30%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
+/* Inputs for text */
 
-input[type=longtext] {
+input[type=text] {
     width: 30%;
     padding: 12px 20px;
     margin: 8px 2px;
