@@ -1,8 +1,12 @@
+import { useState } from "react";
+import Dashboard from "../dashboard/Dashboard";
 import './NewProject.css';
 
 function NewProject() {
 
-    return (
+    const [showDashboard, setShowDashboard] = useState(false);
+
+    const newproject = (
         <div className="container">
             <label for="pname"><b>Project Name:</b><br></br></label>
             <input type="text" name="pname" required />
@@ -23,8 +27,14 @@ function NewProject() {
             <input type="text" name="deadline" required />
 
             <label for="space"><b><br></br><br></br></b></label>
-            <createbutton type="create">Create</createbutton>
+            <createbutton onClick={() => setShowDashboard(true)} type="create">Create</createbutton>
 
+        </div>
+    );
+
+    return (
+        <div>
+            {showDashboard ? <Dashboard /> : newproject}
         </div>
     )
 }
