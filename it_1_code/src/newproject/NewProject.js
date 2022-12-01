@@ -22,6 +22,8 @@ function NewProject() {
                 <label for="deadline"><b><br></br>Deadline:<br></br></b></label>
                 <input type="shorttext" name="deadline" required />
 
+                <createbutton type="create">Create</createbutton>
+
             </div>
     )
 }

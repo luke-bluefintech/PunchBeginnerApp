@@ -23,7 +23,7 @@ input[type=longtext] {
 }
 
 /* Set a style for buttons */
-/*button {
+createbutton {
     background-color: #7393B3;
     color: white;
     padding: 14px 20px;
@@ -33,10 +33,10 @@ input[type=longtext] {
     width: 20%;
 }
 
-/* Add a hover effect for buttons 
-button:hover {
+/* Add a hover effect for buttons */
+createbutton:hover {
     opacity: 0.8;
-}*/
+}
 
 /* Add padding to containers */
 .container {

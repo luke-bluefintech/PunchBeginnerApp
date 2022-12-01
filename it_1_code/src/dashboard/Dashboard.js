@@ -21,7 +21,7 @@ function Dashboard() {
             <button className="button-create-project" >Create New Project</button>
 
             {/*Table that displays projects*/}
-            <table>
+            <table className = "center">
                 <tr onClick={() => setShowViewProject(true)}>
                     <th>Project</th>
                     <th>Goal Amount</th>

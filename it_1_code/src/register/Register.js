@@ -23,6 +23,7 @@ function Register() {
             <label for="conpsw"><b><br></br>Confirm Password<br></br></b></label>
             <input type="password" name="conpsw" required />
 
+            <label for="space"><b><br></br><br></br></b></label>
             <signupbutton type="signup" onClick={() => setShowLogin(true)}>Sign Up</signupbutton>
         </div>
     );
