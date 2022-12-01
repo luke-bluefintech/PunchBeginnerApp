@@ -11,7 +11,7 @@ function Login() {
     const login = (
         <div>
             <label for="uname"><b>Username</b><br></br></label>
-            <input type="text" placeholder="Enter Username:" name="uname" required />
+            <input id="email-input" type="text" placeholder="Enter Username:" name="uname" required />
 
             <label for="psw"><b><br></br>Password<br></br></b></label>
             <input type="password" placeholder="Enter Password:" name="psw" required />
@@ -21,7 +21,10 @@ function Login() {
                 <a>Remember me?<br></br></a>
             </label>
 
-            <button type="login" onClick={() => setShowDashboard(true)}>Login {showDashboard}</button>
+            <button type="login" onClick={() => {
+                Dashboard.email = Document.getElementById("email-input").value;
+                setShowDashboard(true);
+            }}>Login {showDashboard}</button>
 
             <label for="new"><b><br></br>New User?<br></br></b></label>
             <button type="register" onClick={() => setShowRegister(true)}>Register Here</button>
