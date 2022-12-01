@@ -1,6 +1,11 @@
+import { useState } from "react";
+import Pledge from "../pledge/Pledge";
 import './ViewProject.css';
 
 function ViewProject() {
+
+    const [showPledge, setShowPledge] = useState(false);
+
     const project = {
         name: "Big Fork",
         description: "Funding for Sophie's big fork.",
@@ -10,7 +15,7 @@ function ViewProject() {
         deadline: "Tomorrow"
     };
 
-    return (
+    const viewproject = (
         <div className="info-div">
             {/* img below will have src='url of project image' */}
             <img className='heading--logo' />
@@ -33,7 +38,13 @@ function ViewProject() {
             <label className="label-text">Deadline: </label>
             {project?.deadline}
             <br></br>
-            <button className="pledgebutton-vp" type="pledge">Pledge</button>
+            <button className="pledgebutton-vp" onClick={() => setShowPledge(true)} type="pledge">Pledge</button>
+        </div>
+    );
+
+    return (
+        <div>
+            {showPledge ? <Pledge /> : viewproject}
         </div>
     )
 };

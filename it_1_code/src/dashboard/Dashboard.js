@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import './Dashboard.css';
 import ViewProject from "../viewproject/ViewProject";
+import NewProject from "../newproject/NewProject";
 import Pledge from "../pledge/Pledge";
 
 function Dashboard() {
 
     const [showViewProject, setShowViewProject] = useState(false);
     const [showPledge, setShowPledge] = useState(false);
+    const [showNewProject, setShowNewProject] = useState(false);
 
     const dashboard = (
         <div>
@@ -18,7 +20,7 @@ function Dashboard() {
                 id="myInput"
                 placeholder="Search for Projects" />
             <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
-            <button className="button-create-project" >Create New Project</button>
+            <button className="button-create-project" onClick={() => setShowNewProject(true)}>Create New Project</button>
 
             {/*Table that displays projects*/}
             <table>
@@ -46,7 +48,9 @@ function Dashboard() {
 
     return (
         <div>
-            {showPledge ? <Pledge /> : showViewProject ? <ViewProject /> : dashboard}
+            {showPledge ? <Pledge /> : showViewProject ? <ViewProject /> : null}
+            {showNewProject ? <NewProject /> : null}
+            {showPledge || showNewProject || showViewProject ? null : dashboard}
         </div>
     )
 };
