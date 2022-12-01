@@ -19,6 +19,9 @@ function Dashboard() {
     const [showPledge, setShowPledge] = useState(false);
     const [showNewProject, setShowNewProject] = useState(false);
 
+    let email = "";
+    let password = "";
+
     const samplePayload = {
         "data": {
             "projects": [
@@ -71,7 +74,8 @@ function Dashboard() {
             // Creating the Row
             var tr = document.createElement("tr");
             tr.onclick = () => {
-                ViewProject.project = project.project_name;
+                ViewProject.email = email;
+                ViewProject.project_name = project.project_name;
                 setShowViewProject(true);
             };
             // Creating the Cells
@@ -97,8 +101,8 @@ function Dashboard() {
         })
     }
 
-    const fetchAllProjects = (email) => {
-        instance.post("/designer/project/list", { "designer_email": "luke.c.foley@gmail.com" })
+    const fetchAllProjects = () => {
+        instance.post("/designer/project/list", { "designer_email": Dashboard.email })
             .then(function (response) {
                 fillTable(response.data.projects)
             })
@@ -108,8 +112,7 @@ function Dashboard() {
     }
 
     useEffect(() => {
-        console.log("calling");
-        fetchAllProjects("email");
+        fetchAllProjects();
     });
 
     const dashboard = (
@@ -120,7 +123,10 @@ function Dashboard() {
                 id="myInput"
                 placeholder="Search for Projects" />
             <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
-            <button className="button-create-project" onClick={() => setShowNewProject(true)}>Create New Project</button>
+            <button className="button-create-project" onClick={() => {
+                NewProject.email = Dashboard.email;
+                setShowNewProject(true);
+            }}>Create New Project</button>
 
             {/*Table that displays projects*/}
             <table id="projects-table" className="center">

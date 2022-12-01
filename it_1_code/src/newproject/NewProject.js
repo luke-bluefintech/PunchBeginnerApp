@@ -12,8 +12,11 @@ function NewProject() {
     }
     );
 
+    let email = "";
+
     const postNewProject = () => {
         let data = {
+            "designer_email": NewProject.email,
             "project_name": document.getElementById("project-name").value,
             "project_description": document.getElementById("your-story").value,
             "designer_name": document.getElementById("your-name").value,

@@ -1,0 +1,16 @@
+.label-text {
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    color: rgb(125, 125, 125);
+    position: relative;
+    line-height: 210%;
+}
+
+input[type=shorttext] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
