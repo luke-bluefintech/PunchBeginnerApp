@@ -22,7 +22,7 @@ function Dashboard() {
     let email = "";
 
     const fillTable = (projects) => {
-        var element = document.getElementsByClassName("data"), index;
+        var element = document.getElementsByClassName("dashboard-data"), index;
         for (index = element.length - 1; index >= 0; index--) {
             element[index].parentNode.removeChild(element[index]);
         }
@@ -31,18 +31,18 @@ function Dashboard() {
             // Creating the Row
             var tr = document.createElement("tr");
             tr.onclick = () => {
-                ViewProject.email = email;
+                ViewProject.email = Dashboard.email;
                 ViewProject.project_name = project.project_name;
                 setShowViewProject(true);
             };
-            tr.className = "data";
+            tr.className = "dashboard-data";
             // Creating the Cells
             var projectName = document.createElement("td");
-            projectName.className = "data";
+            projectName.className = "dashboard-data";
             var goalAmount = document.createElement("td");
-            goalAmount.className = "data";
+            goalAmount.className = "dashboard-data";
             var amountReached = document.createElement("td");
-            amountReached.className = "data";
+            amountReached.className = "dashboard-data";
             // Creating the Text in the Cells
             var projectNameTxt = document.createTextNode(project.project_name);
             var goalAmountTxt = document.createTextNode(project.project_goal);
@@ -65,7 +65,9 @@ function Dashboard() {
     const fetchAllProjects = () => {
         instance.post("/designer/project/list", { "designer_email": Dashboard.email })
             .then(function (response) {
-                fillTable(response.data.projects)
+                console.log("HERE");
+                console.log(response);
+                fillTable(response.data.projects);
             })
             .catch(function (error) {
                 console.log(error);

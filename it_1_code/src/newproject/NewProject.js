@@ -38,24 +38,6 @@ function NewProject() {
     const newproject = (
         <div className="container">
             <label for="pname"><b>Project Name:</b><br></br></label>
-<<<<<<< HEAD
-            <input type="text" name="pname" required />
-
-            <label for="story"><b><br></br>Your Story:</b><br></br></label>
-            <input type="text" name="story" required />
-
-            <label for="yname"><b><br></br>Your Name:</b><br></br></label>
-            <input type="text" name="yname" required />
-
-            <label for="genre"><b><br></br>Genre:<br></br></b></label>
-            <input type="text" name="genre" required />
-
-            <label for="goal"><b><br></br>Goal:<br></br></b></label>
-            <input type="text" name="goal" required />
-
-            <label for="deadline"><b><br></br>Deadline:<br></br></b></label>
-            <input type="text" name="deadline" required />
-=======
             <input id="project-name" type="shorttext" name="pname" required />
 
             <label for="story"><b><br></br>Your Story:</b><br></br></label>
@@ -72,7 +54,6 @@ function NewProject() {
 
             <label for="deadline"><b><br></br>Deadline:<br></br></b></label>
             <input id="project-deadline" type="shorttext" name="deadline" required />
->>>>>>> 79a6444bb76c3480a502081643606874908c8e46
 
             <label for="space"><b><br></br><br></br></b></label>
             <createbutton onClick={() => {

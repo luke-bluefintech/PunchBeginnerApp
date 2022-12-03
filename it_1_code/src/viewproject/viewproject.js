@@ -49,10 +49,14 @@ function ViewProject() {
         projectData.project_pledges.forEach(pledge => {
             // Creating the Row
             var tr = document.createElement("tr");
+            tr.className = "data";
             // Creating the Cells
             var pledgeDescription = document.createElement("td");
+            pledgeDescription.className = "data";
             var maxSupporters = document.createElement("td");
+            maxSupporters.className = "data";
             var amount = document.createElement("td");
+            amount.className = "data";
             // Creating the Text in the Cells
             var pledgeDescriptionTxt = document.createTextNode(pledge.pledge_description);
 
@@ -138,13 +142,14 @@ function ViewProject() {
             </table>
             <br></br>
             <button type="login" onClick={() => {
-                CreatePledge.email = email;
+                CreatePledge.email = ViewProject.email;
                 CreatePledge.project_name = ViewProject.project_name;
                 setShowCreatePledge(true);
             }}>Create Pledge</button>
             <br></br>
             <button type="login" onClick={() => {
-                Dashboard.email = email;
+                console.log(ViewProject.email);
+                Dashboard.email = ViewProject.email;
                 setShowDashboard(true);
             }}>Return to Dashboard</button>
             {/* NOT NEEDED YET <button className="pledgebutton-vp" onClick={() => setShowPledge(true)} type="pledge">Pledge</button>*/}
