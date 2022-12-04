@@ -7,6 +7,7 @@ import ViewProject from "../viewproject/ViewProject";
 import NewProject from "../newproject/NewProject";
 import Pledge from "../pledge/Pledge";
 import $ from 'jquery';
+import { email } from '../login/Login';
 
 const instance = axios.create({
     baseURL: 'https://s31510gc92.execute-api.us-east-2.amazonaws.com/Prod'
@@ -16,10 +17,7 @@ const instance = axios.create({
 function Dashboard() {
 
     const [showViewProject, setShowViewProject] = useState(false);
-    const [showPledge, setShowPledge] = useState(false);
     const [showNewProject, setShowNewProject] = useState(false);
-
-    let email = "a";
 
     const fillTable = (projects) => {
         var element = document.getElementsByClassName("dashboard-data"), index;
@@ -63,10 +61,11 @@ function Dashboard() {
     }
 
     const fetchAllProjects = () => {
-        console.log(email);
-        instance.post("/designer/project/list", { "designer_email": Dashboard.email })
+        var url = window.location.href;
+        var start = url.lastIndexOf('/');
+        var email = url.substring(start + 1);
+        instance.post("/designer/project/list", { "designer_email": email })
             .then(function (response) {
-                console.log("HERE");
                 console.log(response);
                 fillTable(response.data.projects);
             })
@@ -79,38 +78,33 @@ function Dashboard() {
         fetchAllProjects();
     });
 
-    const dashboard =
-        (
-            <div className="container">
-                <input
-                    className="dashboard-input-search"
-                    type="search"
-                    id="myInput"
-                    placeholder="Search for Projects" />
-                <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
-                <button className="button-create-project" onClick={() => {
-                    NewProject.email = Dashboard.email;
-                    setShowNewProject(true);
-                }}>Create New Project</button>
-
-                {/*Table that displays projects*/}
-                <table id="projects-table" className="center">
-                    <tr>
-                        <th>Project</th>
-                        <th>Goal Amount</th>
-                        <th>Amount Reached</th>
-                        <th>Launch Project?</th>
-                    </tr>
-                </table>
-            </div>
-        );
-
     return (
-        <div>
-            {dashboard}
-            {/*showPledge ? <Pledge /> : showViewProject ? <ViewProject /> : null*/}
-            {/*showNewProject ? <NewProject /> : null*/}
-            {/*showPledge || showNewProject || showViewProject ? null : dashboard*/}
+        <div className="container">
+            <input
+                className="dashboard-input-search"
+                type="search"
+                id="myInput"
+                placeholder="Search for Projects" />
+            <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
+            <button className="button-create-project" onClick={() => {
+                NewProject.email = Dashboard.email;
+                var url = window.location.href;
+                var start = url.lastIndexOf('/');
+                var email = url.substring(start);
+                url = url.substring(0, url.length - 19);
+                url += "/viewproject" + email;
+                window.location.href = url;
+            }}>Create New Project</button>
+
+            {/*Table that displays projects*/}
+            <table id="projects-table" className="center">
+                <tr>
+                    <th>Project</th>
+                    <th>Goal Amount</th>
+                    <th>Amount Reached</th>
+                    <th>Launch Project?</th>
+                </tr>
+            </table>
         </div>
     )
 };

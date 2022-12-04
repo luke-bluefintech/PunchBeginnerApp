@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import axios from "axios";
 import Dashboard from "../dashboard/Dashboard";
 import AdminDashboard from "../admindashboard/AdminDashboard";
 import NewProject from "../newproject/NewProject";
 import Register from "../register/Register";
 import ViewProject from "../viewproject/ViewProject";
+import App from "../App";
 import './Login.css';
 
 const instance = axios.create({
@@ -17,15 +18,16 @@ function Login() {
     const [showDashboard, setShowDashboard] = useState(false);
     const [showAdminDashboard, setShowAdminDashboard] = useState(false);
 
+    const email = createContext();
+
     const verifyAccount = () => {
-        let email = document.getElementById("email-input").value;
+        let email = document.getElementById("email-input").value;   
         let password = document.getElementById("pswd").value;
         instance.post("/designer/login", { "designer_email": email, "designer_password": password })
             .then(function (response) {
-                Dashboard.email = email;
                 var url = window.location.href;
                 url = url.substring(0, url.length - 6);
-                url += "/dashboard";
+                url += "/dashboard/rpoleynick@wpi.edu";
                 window.location.href = url;
             })
             .catch(function (error) {
@@ -60,8 +62,8 @@ function Login() {
             })
     }
 
-    const login = (
-        <div>
+    return (
+        <div className="container">
             <label for="uname"><b>Username</b><br></br></label>
             <input id="email-input" type="text" placeholder="Enter Username:" name="uname" required />
 
@@ -89,12 +91,6 @@ function Login() {
 
             <label for="new"><b><br></br>New User?<br></br></b></label>
             <button type="register" onClick={() => createAccount()}>Register Account</button>
-        </div>
-    );
-
-    return (
-        <div className="container">
-            {login}
         </div>
     )
 }
