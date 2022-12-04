@@ -16,7 +16,6 @@ function Login() {
 
     const [showDashboard, setShowDashboard] = useState(false);
     const [showAdminDashboard, setShowAdminDashboard] = useState(false);
-    const [showRegister, setShowRegister] = useState(false);
 
     const verifyAccount = () => {
         let email = document.getElementById("email-input").value;
@@ -24,7 +23,10 @@ function Login() {
         instance.post("/designer/login", { "designer_email": email, "designer_password": password })
             .then(function (response) {
                 Dashboard.email = email;
-                setShowDashboard(true);
+                var url = window.location.href;
+                url = url.substring(0, url.length - 6);
+                url += "/dashboard";
+                window.location.href = url;
             })
             .catch(function (error) {
                 console.log(error);
@@ -92,9 +94,7 @@ function Login() {
 
     return (
         <div className="container">
-            {showDashboard ? false : showAdminDashboard ? false : login}
-            {showDashboard ? <Dashboard /> : showAdminDashboard ? <AdminDashboard /> : null}
-            {/*{showRegister ? <Register /> : null}*/}
+            {login}
         </div>
     )
 }

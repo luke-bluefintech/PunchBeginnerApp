@@ -1,14 +1,17 @@
 import Login from "../login/Login";
 import Navbar from '../navbar/Navbar';
+import { Route, Routes } from 'react-router-dom';
 
-console.log("LAYOUT");
+//console.log(window.location.href);
+//window.location.href += "/layout";
 
 const Layout = () => {
-    console.log("now we are here");
     return (
         <div style={{ marginTop: "7%" }}>
-            <Navbar />
-            <Login />
+            <Routes>
+                <Route path='/' element={<Navbar />} />
+                <Route path='/login' element={<Login />} />
+            </Routes>
         </div>
     )
 };

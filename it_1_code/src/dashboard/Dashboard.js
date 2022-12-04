@@ -19,7 +19,7 @@ function Dashboard() {
     const [showPledge, setShowPledge] = useState(false);
     const [showNewProject, setShowNewProject] = useState(false);
 
-    let email = "";
+    let email = "a";
 
     const fillTable = (projects) => {
         var element = document.getElementsByClassName("dashboard-data"), index;
@@ -63,6 +63,7 @@ function Dashboard() {
     }
 
     const fetchAllProjects = () => {
+        console.log(email);
         instance.post("/designer/project/list", { "designer_email": Dashboard.email })
             .then(function (response) {
                 console.log("HERE");
@@ -80,7 +81,7 @@ function Dashboard() {
 
     const dashboard =
         (
-            <div>
+            <div className="container">
                 <input
                     className="dashboard-input-search"
                     type="search"
@@ -106,9 +107,10 @@ function Dashboard() {
 
     return (
         <div>
-            {showPledge ? <Pledge /> : showViewProject ? <ViewProject /> : null}
-            {showNewProject ? <NewProject /> : null}
-            {showPledge || showNewProject || showViewProject ? null : dashboard}
+            {dashboard}
+            {/*showPledge ? <Pledge /> : showViewProject ? <ViewProject /> : null*/}
+            {/*showNewProject ? <NewProject /> : null*/}
+            {/*showPledge || showNewProject || showViewProject ? null : dashboard*/}
         </div>
     )
 };
