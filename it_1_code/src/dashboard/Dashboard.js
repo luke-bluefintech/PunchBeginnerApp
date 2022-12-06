@@ -1,23 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import './Dashboard.css';
-import ViewProject from "../viewproject/ViewProject";
-import NewProject from "../newproject/NewProject";
-import Pledge from "../pledge/Pledge";
-import $ from 'jquery';
-import { email } from '../login/Login';
 
 const instance = axios.create({
     baseURL: 'https://s31510gc92.execute-api.us-east-2.amazonaws.com/Prod'
 }
 );
 
-function Dashboard() {
+function Dashboard(props) {
 
-    const [showViewProject, setShowViewProject] = useState(false);
-    const [showNewProject, setShowNewProject] = useState(false);
+    const navigate = useNavigate();
 
     const fillTable = (projects) => {
         var element = document.getElementsByClassName("dashboard-data"), index;
@@ -29,28 +24,23 @@ function Dashboard() {
             // Creating the Row
             var tr = document.createElement("tr");
             tr.onclick = () => {
-                ViewProject.email = Dashboard.email;
-                ViewProject.project_name = project.project_name;
-                setShowViewProject(true);
+                props.setProject(tr.childNodes[0].innerHTML);
+                navigate("/dashboard/viewproject")
             };
             tr.className = "dashboard-data";
             // Creating the Cells
             var projectName = document.createElement("td");
-            projectName.className = "dashboard-data";
+            projectName.className = "dashboard-data projNameCell";
             var goalAmount = document.createElement("td");
             goalAmount.className = "dashboard-data";
             var amountReached = document.createElement("td");
             amountReached.className = "dashboard-data";
             // Creating the Text in the Cells
-            var projectNameTxt = document.createTextNode(project.project_name);
-            var goalAmountTxt = document.createTextNode(project.project_goal);
-            var amountReachedTxt = document.createTextNode(project.project_funded);
+            projectName.innerHTML = project.project_name;
+            goalAmount.innerHTML = project.project_goal;
+            amountReached.innerHTML = project.project_funded;
             // Getting the Table
             var projectsTable = document.getElementById("projects-table");
-            // Appending the Text to the Cells
-            projectName.appendChild(projectNameTxt);
-            goalAmount.appendChild(goalAmountTxt);
-            amountReached.appendChild(amountReachedTxt);
             // Appending the Cells to the Row
             tr.appendChild(projectName);
             tr.appendChild(goalAmount);
@@ -61,9 +51,7 @@ function Dashboard() {
     }
 
     const fetchAllProjects = () => {
-        var url = window.location.href;
-        var start = url.lastIndexOf('/');
-        var email = url.substring(start + 1);
+        var email = props.email;
         instance.post("/designer/project/list", { "designer_email": email })
             .then(function (response) {
                 console.log(response);
@@ -76,7 +64,8 @@ function Dashboard() {
 
     useEffect(() => {
         fetchAllProjects();
-    });
+    }
+    );
 
     return (
         <div className="container">
@@ -87,13 +76,7 @@ function Dashboard() {
                 placeholder="Search for Projects" />
             <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
             <button className="button-create-project" onClick={() => {
-                NewProject.email = Dashboard.email;
-                var url = window.location.href;
-                var start = url.lastIndexOf('/');
-                var email = url.substring(start);
-                url = url.substring(0, url.length - 19);
-                url += "/viewproject" + email;
-                window.location.href = url;
+                navigate("/dashboard/newproject");
             }}>Create New Project</button>
 
             {/*Table that displays projects*/}

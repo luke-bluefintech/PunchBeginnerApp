@@ -1,63 +1,54 @@
-import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './CreatePledge.css';
-import ViewProject from "../viewproject/ViewProject";
 
 const instance = axios.create({
     baseURL: 'https://s31510gc92.execute-api.us-east-2.amazonaws.com/Prod'
 }
 );
 
-function CreatePledge() {
+function CreatePledge(props) {
 
-    const [showViewProject, setShowViewProject] = useState(false);
-
-    let email = "";
-    let project_name = "";
+    const navigate = useNavigate();
 
     const postNewPledge = () => {
         let data = {
-            "project_name": CreatePledge.project_name,
-            "designer_email": CreatePledge.email,
+            "project_name": props.project,
+            "designer_email": props.email,
             "pledge_description": document.getElementById("reward").value,
             "pledge_max_supporters": document.getElementById("how-much").value,
             "pledge_amount": document.getElementById("max").value,
-            };
+        };
         instance.post("/designer/pledge/create", data)
             .then(function (response) {
                 // Set ViewProjects.project to the project name
                 // Switch to project view
-                ViewProject.email = CreatePledge.email;
-                ViewProject.project_name = CreatePledge.project_name;
-                setShowViewProject(true);
+                navigate("/dashboard/viewproject")
             })
             .catch(function (error) {
                 console.log(error);
             })
     }
 
-    const createpledge = (
-        <div>
-            <label className="label-text">{CreatePledge.project_name}</label>
+    return (
+        <div className="container">
+            <label className="label-text">{props.project_name}</label>
             <br></br>
-            <label className="label-text">What do they get?: </label>
+            <label className="label-text">What do they get?</label>
+            <br></br>
             <input id="reward" type="shorttext" name="goal" required />
             <br></br>
-            <label className="label-text">How much: </label>
+            <label className="label-text">How much?</label>
+            <br></br>
             <input id="how-much" type="shorttext" name="goal" required />
             <br></br>
-            <label className="label-text">Max: </label>
+            <label className="label-text">Maximum number?</label>
+            <br></br>
             <input id="max" type="shorttext" name="goal" required />
             <br></br>
             <button type="login" onClick={() => {
                 postNewPledge()
             }}>Submit</button>
-        </div>
-    );
-
-    return (
-        <div>
-            {showViewProject ? <ViewProject /> : createpledge}
         </div>
     )
 

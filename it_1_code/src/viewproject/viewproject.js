@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Pledge from "../pledge/Pledge";
-import Dashboard from "../dashboard/Dashboard";
 import './ViewProject.css';
-import CreatePledge from "../createpledge/CreatePledge";
 
-function ViewProject() {
+function ViewProject(props) {
     const [showPledge, setShowPledge] = useState(false);
     const [showCreatePledge, setShowCreatePledge] = useState(false);
     const [showDashboard, setShowDashboard] = useState(false);
@@ -15,13 +13,10 @@ function ViewProject() {
     }
     );
 
-    let project_name = "";
-    let email = "";
+    const navigate = useNavigate();
 
     const fillData = (projectData) => {
-        console.log(document);
         var element = document.getElementsByClassName("data"), index;
-        console.log(element);
         for (index = element.length - 1; index >= 0; index--) {
             element[index].parentNode.removeChild(element[index]);
         }
@@ -92,8 +87,7 @@ function ViewProject() {
     };
 
     const fetchProject = () => {
-        let data = { "designer_email": ViewProject.email, "project_name": ViewProject.project_name };
-        console.log("about to fetch project : " + ViewProject.project_name);
+        let data = { "designer_email": props.email, "project_name": props.project };
         instance.post("/designer/project/view", data)
             .then(function (response) {
                 console.log("RESPONSE");
@@ -106,12 +100,11 @@ function ViewProject() {
     }
 
     useEffect(() => {
-        console.log("ViewProject : " + ViewProject.project);
         fetchProject();
     });
 
-    const viewproject = (
-        <div className="info-div">
+    return (
+        <div className="info-div container">
             {/* img below will have src='url of project image' */}
             <img className='heading--logo' />
             <br></br>
@@ -142,23 +135,13 @@ function ViewProject() {
             </table>
             <br></br>
             <button type="login" onClick={() => {
-                CreatePledge.email = ViewProject.email;
-                CreatePledge.project_name = ViewProject.project_name;
-                setShowCreatePledge(true);
+                navigate("/dashboard/viewproject/createpledge");
             }}>Create Pledge</button>
             <br></br>
             <button type="login" onClick={() => {
-                console.log(ViewProject.email);
-                Dashboard.email = ViewProject.email;
-                setShowDashboard(true);
+                navigate("/dashboard");
             }}>Return to Dashboard</button>
             {/* NOT NEEDED YET <button className="pledgebutton-vp" onClick={() => setShowPledge(true)} type="pledge">Pledge</button>*/}
-        </div>
-    );
-
-    return (
-        <div>
-            {showDashboard ? <Dashboard /> : showCreatePledge ? <CreatePledge /> : viewproject}
         </div>
     )
 };

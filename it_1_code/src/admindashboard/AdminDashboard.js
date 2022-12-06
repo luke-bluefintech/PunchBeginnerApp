@@ -1,23 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import './AdminDashboard.css';
-import ViewProject from "../viewproject/ViewProject";
-import NewProject from "../newproject/NewProject";
-import Pledge from "../pledge/Pledge";
-import $ from 'jquery';
 
 const instance = axios.create({
     baseURL: 'https://s31510gc92.execute-api.us-east-2.amazonaws.com/Prod'
 }
 );
 
-function AdminDashboard() {
-
-    const [showViewProject, setShowViewProject] = useState(false);
-    const [showPledge, setShowPledge] = useState(false);
-    const [showNewProject, setShowNewProject] = useState(false);
+function AdminDashboard(props) {
 
     let password = "";
 
@@ -30,11 +22,6 @@ function AdminDashboard() {
         projects.forEach(project => {
             // Creating the Row
             var tr = document.createElement("tr");
-            /**tr.onclick = () => {
-                ViewProject.password = password;
-                ViewProject.project_name = project.project_name;
-                setShowViewProject(true);
-            };*/
             tr.className = "data";
             // Creating the Cells
             var projectName = document.createElement("td");
@@ -63,7 +50,7 @@ function AdminDashboard() {
     }
 
     const fetchAllProjects = () => {
-        instance.post("/admin/project/list", { "admin_password": AdminDashboard.password })
+        instance.post("/admin/project/list", { "admin_password": props.password })
             .then(function (response) {
                 fillTable(response.data.projects)
             })
@@ -76,36 +63,27 @@ function AdminDashboard() {
         fetchAllProjects();
     });
 
-    const dashboard =
-        (
-            <div>
-                <input
-                    className="dashboard-input-search"
-                    type="search"
-                    id="myInput"
-                    placeholder="Search for Projects" />
-                <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
-                <button className="button-create-project" onClick={() => {
-                    //NewProject.password = AdminDashboard.password;
-                    //setShowNewProject(true);
-                }}>Create New Project</button>
-
-                {/*Table that displays projects*/}
-                <table id="projects-table" className="center">
-                    <tr>
-                        <th>Project</th>
-                        <th>Goal Amount</th>
-                        <th>Amount Reached</th>
-                    </tr>
-                </table>
-            </div>
-        );
-
     return (
         <div>
-            {showPledge ? <Pledge /> : showViewProject ? <ViewProject /> : null}
-            {showNewProject ? <NewProject /> : null}
-            {showPledge || showNewProject || showViewProject ? null : dashboard}
+            <input
+                className="dashboard-input-search"
+                type="search"
+                id="myInput"
+                placeholder="Search for Projects" />
+            <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
+            <button className="button-create-project" onClick={() => {
+                //NewProject.password = AdminDashboard.password;
+                //setShowNewProject(true);
+            }}>Create New Project</button>
+
+            {/*Table that displays projects*/}
+            <table id="projects-table" className="center">
+                <tr>
+                    <th>Project</th>
+                    <th>Goal Amount</th>
+                    <th>Amount Reached</th>
+                </tr>
+            </table>
         </div>
     )
 };

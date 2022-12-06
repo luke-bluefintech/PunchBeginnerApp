@@ -81,8 +81,9 @@ tr {
     border-bottom: 1px solid #ddd;
 }
 
-tr:hover {
+.dashboard-data:hover {
     background-color: #D6EEEE;
+    cursor: pointer;
 }
 
 th,
