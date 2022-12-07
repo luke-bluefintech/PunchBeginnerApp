@@ -45,8 +45,8 @@ function CreatePledge(props) {
             <label className="label-text">Maximum number?</label>
             <br></br>
             <input id="max" type="shorttext" name="goal" required />
-            <br></br>
-            <button type="login" onClick={() => {
+            <br></br><br></br>
+            <button className="cp-action-button" type="login" onClick={() => {
                 postNewPledge()
             }}>Submit</button>
         </div>

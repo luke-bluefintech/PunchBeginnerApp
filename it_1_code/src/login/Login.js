@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './Login.css';
@@ -10,12 +10,13 @@ const instance = axios.create({
 
 function Login(props) {
 
+    const [showPassword, setShowPassword] = useState(true);
     const navigate = useNavigate();
 
     const email = createContext();
 
     const verifyAccount = () => {
-        let email = document.getElementById("email-input").value;   
+        let email = document.getElementById("email-input").value;
         let password = document.getElementById("pswd").value;
         instance.post("/designer/login", { "designer_email": email, "designer_password": password })
             .then(function (response) {
@@ -59,34 +60,50 @@ function Login(props) {
     }
 
     return (
-        <div className="container">
-            <label for="uname"><b>Username</b><br></br></label>
-            <input id="email-input" type="text" placeholder="Enter Username:" name="uname" required />
+        <div>
+            <div className="split left">
+                <div className="color-pink"></div>
+                <i className="logo-title">PunchBeginner</i>
+                <div className="welcome-back">Welcome Back</div>
+                <div className="thank-you">Thank you for using the site that powers startups, small businesses, and projects alike.</div>
+            </div>
+            <div className="split right">
+                <div className="login-container">
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"></link>
+                    <br></br>
+                    <label className="entry-label login-label">Login</label>
+                    <br></br><br></br><br></br><br></br><br></br>
+                    <label className="entry-label">Email</label>
+                    <br></br>
+                    <input id="email-input" type="text" placeholder="Enter Your Email" name="uname" required />
+                    <br></br>
+                    <label className="entry-label">Password</label>
+                    <br></br>
+                    <input id="pswd" type={showPassword ? "password" : "text"} placeholder="Enter Your Password" name="psw" required />
+                    {showPassword ?
+                        <i className="bi bi-eye-slash input-password-eye" onClick={() => { setShowPassword(false) }} /> :
+                        <i className="bi bi-eye input-password-eye" onClick={() => { setShowPassword(true) }} />}
 
-            <label for="psw"><b><br></br>Password<br></br></b></label>
-            <input id="pswd" type="password" placeholder="Enter Password:" name="psw" required />
+                    <br></br>
 
-            <label>
-                <br></br><input type="checkbox" name="remember" />
-                <a>Remember me?<br></br></a>
-            </label>
+                    <button className="login" type="login" onClick={() => {
+                        // Make API Call with email and password
+                        verifyAccount();
+                        // Check if call was 200 or 400
 
-            <button type="login" onClick={() => {
-                // Make API Call with email and password
-                verifyAccount();
-                // Check if call was 200 or 400
+                    }}>Login</button>
+                    <br></br>
+                    <button className="special-login" type="login" onClick={() => {
+                        // Make API Call with email and password
+                        verifyAdminAccount();
+                        // Check if call was 200 or 400
 
-            }}>Login</button>
-            <br></br>
-            <button type="login" onClick={() => {
-                // Make API Call with email and password
-                verifyAdminAccount();
-                // Check if call was 200 or 400
+                    }}>Admin Login</button>
 
-            }}>Admin Login</button>
-
-            <label for="new"><b><br></br>New User?<br></br></b></label>
-            <button type="register" onClick={() => createAccount()}>Register Account</button>
+                    <button className="special-login" type="register" onClick={() => createAccount()}>Register</button>
+                    <div className="copy-right">Created by team L’étoile du Nord</div>
+                </div>
+            </div>
         </div>
     )
 }

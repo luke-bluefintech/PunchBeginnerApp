@@ -6,36 +6,154 @@ form {
 /* Inputs for username and password */
 input[type=text],
 input[type=password] {
-    width: 30%;
+    width: 60%;
+    height: 36px;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    border-radius: 18px;
+}
+
+.logo-title,
+.welcome-back,
+.thank-you {
+    position: absolute;
+    font-size: 48px;
+    font-weight: 700;
+    left: 10%;
+    top: 7%;
+    color: white;
+    z-index: 3 !important;
+}
+
+.welcome-back {
+    top: 51%;
+}
+
+.thank-you {
+    top: 60%;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+br {
+    line-height: 150%;
 }
 
 /* Set a style for buttons */
-button {
-    background-color: #7393B3;
+.special-login,
+.login {
+    background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(247, 195, 210));
+    border: 1px solid rgb(255, 218, 226);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
     cursor: pointer;
-    width: 20%;
+    width: 60%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.special-login {
+    width: 29.4%;
+    margin: 5px;
+}
+
+.entry-label {
+    position: absolute;
+    left: 21%;
+    font-weight: 500;
+}
+
+.login-label {
+    left: 20%;
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffd1dc;
+}
+
+.input-password-eye {
+    position: relative;
+    right: 25px;
+    top: 2px;
+    cursor: pointer;
 }
 
 /* Add a hover effect for buttons */
 button:hover {
-    opacity: 0.8;
+    background-image: linear-gradient(to right, rgb(240, 185, 202), rgb(232, 170, 189));
 }
 
 /* Add padding to containers */
-.container {
-    margin-top: 8%;
+.login-container {
+    margin-top: 22.5%;
+    text-align: center;
 }
 
-.container {
-    /* Center horizontally*/
+.copy-right {
+    margin-top: 5px;
+    color: rgb(130, 130, 130);
+    font-weight: 400;
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(84, 127, 188);
+}
+
+#pswd {
+    position: relative;
+    left: 8px;
+}
+
+/* Split the screen in half */
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 0px;
+}
+
+/* Control the left side */
+.left {
+    left: 0;
+    background-image: url("https://iteration1code.s3.us-east-2.amazonaws.com/Group_Image.jpg");
+    background-position: center;
+    overflow: hidden;
+}
+
+/* Control the right side */
+.right {
+    right: 0;
+    background-color: white;
+}
+
+.color-pink {
+    background: rgba(255, 209, 220, 0.9);
+    overflow: hidden;
+    height: 100%;
+    z-index: 2;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+    width: 150px;
+    border-radius: 50%;
 }

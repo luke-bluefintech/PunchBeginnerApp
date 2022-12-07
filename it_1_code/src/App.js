@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <div>
-      <Navbar />
+      {email != "" ? <Navbar /> : null}
       <Routes>
         <Route path='/login' element={<Login email={email} setEmail={setEmail} password={password} setPassword={setPassword} />} />
         <Route path='/dashboard' element={<Dashboard email={email} password={password} setProject={setProject} />} />

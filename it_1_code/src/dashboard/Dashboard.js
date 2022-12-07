@@ -81,7 +81,7 @@ function Dashboard(props) {
 
             {/*Table that displays projects*/}
             <table id="projects-table" className="center">
-                <tr>
+                <tr className="title-row">
                     <th>Project</th>
                     <th>Goal Amount</th>
                     <th>Amount Reached</th>

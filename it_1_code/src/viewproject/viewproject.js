@@ -104,43 +104,46 @@ function ViewProject(props) {
     });
 
     return (
-        <div className="info-div container">
-            {/* img below will have src='url of project image' */}
-            <img className='heading--logo' />
-            <br></br>
-            <label className="label-text">Project Name: </label>
-            <div id="project-name"></div>
-            <br></br>
-            <label className="label-text">Description: </label>
-            <div id="project-description"></div>
-            <br></br>
-            <label className="label-text">Goal: </label>
-            <div id="project-goal"></div>
-            <br></br>
-            <label className="label-text">Genre: </label>
-            <div id="project-genre"></div>
-            <br></br>
-            <label className="label-text">Creator: </label>
-            <div id="project-creator"></div>
-            <br></br>
-            <label className="label-text">Deadline: </label>
-            <div id="project-deadline"></div>
-            <br></br>
-            <table id="pledge-table" className="center">
-                <tr>
-                    <th>Pledge Description</th>
-                    <th>Max Supporters</th>
-                    <th>Amount</th>
-                </tr>
-            </table>
-            <br></br>
-            <button type="login" onClick={() => {
-                navigate("/dashboard/viewproject/createpledge");
-            }}>Create Pledge</button>
-            <br></br>
-            <button type="login" onClick={() => {
-                navigate("/dashboard");
-            }}>Return to Dashboard</button>
+        <div className="info-div" style={{ marginTop: "8%" }}>
+            <div className="vp-split vp-left">
+                <img className='heading--logo' src='https://iteration1code.s3.us-east-2.amazonaws.com/PB_Image.png' />
+                <br></br>
+                <label className="label-text">Project Name: </label>
+                <div id="project-name"></div>
+                <br></br>
+                <label className="label-text">Description: </label>
+                <div id="project-description"></div>
+                <br></br>
+                <label className="label-text">Goal: </label>
+                <div id="project-goal"></div>
+                <br></br>
+                <label className="label-text">Genre: </label>
+                <div id="project-genre"></div>
+                <br></br>
+                <label className="label-text">Creator: </label>
+                <div id="project-creator"></div>
+                <br></br>
+                <label className="label-text">Deadline: </label>
+                <div id="project-deadline"></div>
+            </div>
+            <div className="vp-split vp-right">
+                <div className="login-container">
+                    <button className="action-button" type="login" onClick={() => {
+                        navigate("/dashboard/viewproject/createpledge");
+                    }}>Create Pledge</button>
+                    <button className="action-button" type="login" onClick={() => {
+                        navigate("/dashboard");
+                    }}>Return to Dashboard</button>
+                    <br></br>
+                    <table id="pledge-table" className="center">
+                        <tr className="title-row">
+                            <th>Pledge Description</th>
+                            <th>Max Supporters</th>
+                            <th>Amount</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             {/* NOT NEEDED YET <button className="pledgebutton-vp" onClick={() => setShowPledge(true)} type="pledge">Pledge</button>*/}
         </div>
     )

@@ -26,6 +26,11 @@
     width: 5%;
 }
 
+.title-row {
+    background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(240, 180, 195));
+    color: white;
+}
+
 .info-div {
     margin-left: 1rem;
 }
@@ -33,4 +38,46 @@
 .center {
     margin-left: auto;
     margin-right: auto;
+}
+
+.action-button {
+    background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(247, 195, 210));
+    border: 1px solid gray;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    cursor: pointer;
+    width: 40%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px;
+    text-align: center;
+}
+
+.login-container {
+    text-align: center;
+}
+
+/* Split the screen in half */
+.vp-split {
+    height: 100%;
+    width: 40%;
+    position: fixed;
+    z-index: -1;
+    overflow-x: hidden;
+    padding-top: 0px;
+}
+
+/* Control the left side */
+.vp-left {
+    top: 13%;
+    left: 2%;
+}
+
+/* Control the right side */
+.vp-right {
+    top: 0%;
+    right: 10%;
 }
