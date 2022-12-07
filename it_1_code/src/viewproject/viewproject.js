@@ -15,6 +15,21 @@ function ViewProject(props) {
 
     const navigate = useNavigate();
 
+    const deleteProject = () => {
+        let email = props.email;
+        let project = props.project;
+        instance.post("/designer/project/delete", { "designer_email": email, "project_name": project})
+            .then(function (response) {
+                console.log(response);
+                window.alert("Project has been deleted!");
+                navigate("/dashboard");
+            })
+            .catch(function (error) {
+                window.alert("Error deleting project.");
+                console.log(error);
+            })
+    }
+
     const fillData = (projectData) => {
         var element = document.getElementsByClassName("data"), index;
         for (index = element.length - 1; index >= 0; index--) {
@@ -61,6 +76,10 @@ function ViewProject(props) {
             }
             var maxSupportersTxt = document.createTextNode(maxSuppValue);
             var amountTxt = document.createTextNode(pledge.pledge_amount);
+            var btn = document.createElement('input');
+            btn.type = "button";
+            btn.className = "btn";
+            btn.value = "Delete";
             // Getting the Table
             var pledgeTable = document.getElementById("pledge-table");
             // Appending the Text to the Cells
@@ -71,6 +90,7 @@ function ViewProject(props) {
             tr.appendChild(pledgeDescription);
             tr.appendChild(maxSupporters);
             tr.appendChild(amount);
+            tr.appendChild(btn);
             // Appending the Row to the Table
             pledgeTable.appendChild(tr);
         });
@@ -125,7 +145,11 @@ function ViewProject(props) {
                 <br></br>
                 <label className="label-text">Deadline: </label>
                 <div id="project-deadline"></div>
+                <br></br>
+                <button className="action-button" type="login" onClick={() => deleteProject()}>Delete Project</button>
+                <br></br><br></br><br></br><br></br>
             </div>
+
             <div className="vp-split vp-right">
                 <div className="login-container">
                     <button className="action-button" type="login" onClick={() => {
@@ -135,11 +159,13 @@ function ViewProject(props) {
                         navigate("/dashboard");
                     }}>Return to Dashboard</button>
                     <br></br>
+
                     <table id="pledge-table" className="center">
                         <tr className="title-row">
                             <th>Pledge Description</th>
                             <th>Max Supporters</th>
                             <th>Amount</th>
+                            <th>Delete Pledge</th>
                         </tr>
                     </table>
                 </div>
