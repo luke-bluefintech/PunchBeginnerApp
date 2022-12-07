@@ -26,6 +26,16 @@
     width: 5%;
 }
 
+.buttonp-vp {
+    background-color: #7393B3;
+    color: white;
+    padding: 6px 12px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 5%;
+}
+
 .title-row {
     background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(240, 180, 195));
     color: white;
@@ -66,14 +76,15 @@
     width: 40%;
     position: fixed;
     z-index: -1;
-    overflow-x: hidden;
     padding-top: 0px;
 }
 
 /* Control the left side */
 .vp-left {
+    height: 87%;
     top: 13%;
     left: 2%;
+    overflow-y: scroll;
 }
 
 /* Control the right side */

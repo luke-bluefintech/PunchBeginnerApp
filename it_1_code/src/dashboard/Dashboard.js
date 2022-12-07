@@ -35,6 +35,10 @@ function Dashboard(props) {
             goalAmount.className = "dashboard-data";
             var amountReached = document.createElement("td");
             amountReached.className = "dashboard-data";
+            var btn = document.createElement('input');
+            btn.type = "button";
+            btn.className = "btn";
+            btn.value = "Launch";
             // Creating the Text in the Cells
             projectName.innerHTML = project.project_name;
             goalAmount.innerHTML = project.project_goal;
@@ -45,6 +49,7 @@ function Dashboard(props) {
             tr.appendChild(projectName);
             tr.appendChild(goalAmount);
             tr.appendChild(amountReached);
+            tr.appendChild(btn);
             // Appending the Row to the Table
             projectsTable.appendChild(tr);
         })
