@@ -4,8 +4,8 @@ form {
 }
 
 /* Inputs for username and password */
-input[type=text],
-input[type=password] {
+#email-input,
+#pswd {
     width: 60%;
     height: 36px;
     padding: 12px 20px;
@@ -69,7 +69,15 @@ br {
     font-weight: 500;
 }
 
+.no-account {
+    position: absolute;
+    font-size: 14px;
+    left: 21%;
+    font-weight: 400;
+}
+
 .login-label {
+    position: absolute;
     left: 20%;
     font-size: 48px;
     font-weight: 700;
@@ -137,7 +145,7 @@ a {
 }
 
 .color-pink {
-    background: rgba(255, 209, 220, 0.9);
+    background: rgba(255, 209, 220, 0.91);
     overflow: hidden;
     height: 100%;
     z-index: 2;

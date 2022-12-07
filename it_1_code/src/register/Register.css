@@ -4,29 +4,54 @@ form {
 }
 
 /* Inputs for names, username, password */
-input[type=text],
-input[type=password] {
-    width: 60%;
+.reg-text,
+.reg-password {
+    width: 30%;
+    height: 36px;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    border-radius: 18px;
 }
 
 /* Set a style for sign up button */
-signupbutton {
-    background-color: #7393B3;
+.signupbutton {
+    background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(247, 195, 210));
+    border: 1px solid rgb(255, 218, 226);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
     cursor: pointer;
     width: 20%;
-
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 /* Add a hover effect for button */
-signupbutton:hover {
+.signupbutton:hover {
     opacity: 0.8;
+}
+
+.reg-entry-label {
+    position: absolute;
+    left: 35.5%;
+    font-weight: 500;
+}
+
+.reg-container {
+    margin-top: 9%;
+    text-align: center;
+}
+
+.top-label {
+    position: absolute;
+    left: 35%;
+    font-weight: 500;
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffd1dc;
 }

@@ -5,8 +5,7 @@ import './Login.css';
 
 const instance = axios.create({
     baseURL: 'https://s31510gc92.execute-api.us-east-2.amazonaws.com/Prod'
-}
-);
+});
 
 function Login(props) {
 
@@ -15,7 +14,22 @@ function Login(props) {
 
     const email = createContext();
 
-    const verifyAccount = () => {
+    const verifySupporterAccount = () => {
+        let email = document.getElementById("email-input").value;
+        let password = document.getElementById("pswd").value;
+        instance.post("/designer/login", { "designer_email": email, "designer_password": password })
+            .then(function (response) {
+                props.setEmail(email);
+                props.setPassword(password);
+                navigate("/dashboard");
+            })
+            .catch(function (error) {
+                window.alert("Error logging in as a designer. Please check your username and password.");
+                console.log(error);
+            })
+    }
+
+    const verifyDesignerAccount = () => {
         let email = document.getElementById("email-input").value;
         let password = document.getElementById("pswd").value;
         instance.post("/designer/login", { "designer_email": email, "designer_password": password })
@@ -43,22 +57,6 @@ function Login(props) {
             })
     }
 
-    const createAccount = () => {
-        let email = document.getElementById("email-input").value;
-        let password = document.getElementById("pswd").value;
-        instance.post("/designer/register", { "designer_email": email, "designer_password": password })
-            .then(function (response) {
-                console.log(response);
-                props.setEmail(email);
-                props.setPassword(password);
-                window.alert("Account has been registered!");
-            })
-            .catch(function (error) {
-                window.alert("Error creating account. Please enter a valid email and check the password restrictions.");
-                console.log(error);
-            })
-    }
-
     return (
         <div>
             <div className="split left">
@@ -71,7 +69,7 @@ function Login(props) {
                 <div className="login-container">
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"></link>
                     <br></br>
-                    <label className="entry-label login-label">Login</label>
+                    <label className="login-label">Login</label>
                     <br></br><br></br><br></br><br></br><br></br>
                     <label className="entry-label">Email</label>
                     <br></br>
@@ -83,25 +81,21 @@ function Login(props) {
                     {showPassword ?
                         <i className="bi bi-eye-slash input-password-eye" onClick={() => { setShowPassword(false) }} /> :
                         <i className="bi bi-eye input-password-eye" onClick={() => { setShowPassword(true) }} />}
-
+                    <br></br>
+                    <div className="no-account">Don't have an account? <a href={"/register"}>Sign up</a></div>
                     <br></br>
 
                     <button className="login" type="login" onClick={() => {
-                        // Make API Call with email and password
-                        verifyAccount();
-                        // Check if call was 200 or 400
-
+                        verifySupporterAccount();
                     }}>Login</button>
                     <br></br>
                     <button className="special-login" type="login" onClick={() => {
-                        // Make API Call with email and password
+                        verifyDesignerAccount();
+                    }}>Designer Login</button>
+                    <button className="special-login" type="login" onClick={() => {
                         verifyAdminAccount();
-                        // Check if call was 200 or 400
-
                     }}>Admin Login</button>
-
-                    <button className="special-login" type="register" onClick={() => createAccount()}>Register</button>
-                    <div className="copy-right">Created by team L’étoile du Nord</div>
+                    <div className="copy-right">Powered by team L’étoile du Nord</div>
                 </div>
             </div>
         </div>
