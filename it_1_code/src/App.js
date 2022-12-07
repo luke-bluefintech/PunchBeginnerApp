@@ -8,6 +8,7 @@ import Login from "./login/Login";
 import CreatePledge from "./createpledge/CreatePledge";
 import Dashboard from "./dashboard/Dashboard";
 import AdminDashboard from "./admindashboard/AdminDashboard";
+import SupporterDashboard from "./supporterdashboard/SupporterDashboard";
 import './App.css';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
         <Route path='/login' element={<Login email={email} setEmail={setEmail} password={password} setPassword={setPassword} />} />
         <Route path='/dashboard' element={<Dashboard email={email} password={password} setProject={setProject} />} />
         <Route path='/admindashboard' element={<AdminDashboard email={email} password={password} />} />
+        <Route path='/supporterdashboard' element={<SupporterDashboard email={email} password={password} />} />
         <Route path='/dashboard/viewproject' element={<ViewProject email={email} password={password} project={project} />} />
         <Route path='/dashboard/viewproject/createpledge' element={<CreatePledge email={email} password={password} project={project} />} />
         <Route path='/dashboard/newproject' element={<NewProject email={email} password={password} />} />

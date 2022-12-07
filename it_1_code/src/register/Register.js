@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Login from "../login/Login";
 import './Register.css';
 
 const instance = axios.create({
@@ -17,19 +16,49 @@ function Register(props) {
     const createAccount = () => {
         let email = document.getElementById("reg-email-input").value;
         let password = document.getElementById("reg-pswd").value;
-        instance.post("/designer/register", { "designer_email": email, "designer_password": password })
-            .then(function (response) {
-                console.log(response);
-                window.alert("Account has been registered!");
-                navigate("/login");
-            })
-            .catch(function (error) {
-                window.alert("Error creating account. Please enter a valid email and check the password restrictions.");
-                console.log(error);
-            })
+        // Handles supporter login
+        if (document.getElementById('supporter-account').checked) {
+            instance.post("/supporter/register", { "supporter_email": email, "supporter_password": password })
+                .then(function (response) {
+                    console.log(response);
+                    window.alert("Account has been registered!");
+                    navigate("/login");
+                })
+                .catch(function (error) {
+                    window.alert("Error creating account. Please enter a valid email and check the password restrictions.");
+                    console.log(error);
+                })
+            // Handles designer login
+        } else if (document.getElementById('designer-account').checked) {
+            instance.post("/designer/register", { "designer_email": email, "designer_password": password })
+                .then(function (response) {
+                    console.log(response);
+                    window.alert("Account has been registered!");
+                    navigate("/login");
+                })
+                .catch(function (error) {
+                    window.alert("Error creating account. Please enter a valid email and check the password restrictions.");
+                    console.log(error);
+                })
+            // Handles admin login
+        } else if (document.getElementById('admin-account').checked) {
+            instance.post("/administrator/register", { "administrator_email": email, "administrator_password": password })
+                .then(function (response) {
+                    console.log(response);
+                    window.alert("Account has been registered!");
+                    navigate("/login");
+                })
+                .catch(function (error) {
+                    window.alert("Error creating account. Please enter a valid email and check the password restrictions.");
+                    console.log(error);
+                })
+            // No box selected
+        } else {
+            window.alert("Please select one of the options for account type");
+        }
     }
 
-    const register = (
+    return (
         <div className="reg-container">
             <label className="top-label">Register</label><br></br><br></br><br></br><br></br>
             <label className="reg-entry-label" for="fname"><b>First Name</b></label><br></br>
@@ -47,14 +76,16 @@ function Register(props) {
             <label className="reg-entry-label" for="conpsw"><b>Confirm Password</b></label><br></br>
             <input className="reg-password" type="password" name="conpsw" required /><br></br>
 
+            <div className="please-choose">Please choose one of the following:</div>
+            <input type="radio" id="supporter-account" name="account" />
+            <label className="checkbox-label" for="supporter-account"> Supporter Account </label>
+            <input type="radio" id="designer-account" name="account" />
+            <label className="checkbox-label" for="designer-account"> Designer Account </label>
+            <input type="radio" id="admin-account" name="account" />
+            <label className="checkbox-label" for="admin-account"> Administrator Account</label>
+
             <label className="reg-entry-label" for="space"><b><br></br></b></label><br></br>
             <button className="signupbutton" type="signup" onClick={() => createAccount()}>Sign Up</button>
-        </div>
-    );
-
-    return (
-        <div className="container">
-            {showLogin ? <Login /> : register}
         </div>
     )
 }

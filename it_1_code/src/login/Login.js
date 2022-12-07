@@ -17,14 +17,14 @@ function Login(props) {
     const verifySupporterAccount = () => {
         let email = document.getElementById("email-input").value;
         let password = document.getElementById("pswd").value;
-        instance.post("/designer/login", { "designer_email": email, "designer_password": password })
+        instance.post("/supporter/login", { "supporter_email": email, "supporter_password": password })
             .then(function (response) {
                 props.setEmail(email);
                 props.setPassword(password);
-                navigate("/dashboard");
+                navigate("/supporterdashboard");
             })
             .catch(function (error) {
-                window.alert("Error logging in as a designer. Please check your username and password.");
+                window.alert("Error logging in as a supporter. Please check your username and password.");
                 console.log(error);
             })
     }
@@ -59,6 +59,7 @@ function Login(props) {
 
     return (
         <div>
+            {props.setEmail("")}
             <div className="split left">
                 <div className="color-pink"></div>
                 <i className="logo-title">PunchBeginner</i>
