@@ -30,7 +30,7 @@ function ViewProject(props) {
 
     const deletePledge = () => {
         let email = props.email;
-        let pledge = props.uid;
+        let pledge = props.pledge_uid;
         instance.post("/designer/pledge/delete", { "designer_email": email, "pledge-uid": pledge})
             .then(function (response) {
                 console.log(response);
@@ -94,7 +94,7 @@ function ViewProject(props) {
             btn.className = "btn";
             btn.value = "Delete";
             btn.onclick = () => {
-                navigate("/dashboard/viewproject")
+                deletePledge();
             };
             // Getting the Table
             var pledgeTable = document.getElementById("pledge-table");
