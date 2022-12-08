@@ -18,6 +18,7 @@ function ViewProject(props) {
         instance.post("/designer/project/delete", { "designer_email": email, "project_name": project})
             .then(function (response) {
                 console.log(response);
+                //document.getElementsByClassName()
                 window.alert("Project has been deleted!");
                 navigate("/dashboard");
             })
