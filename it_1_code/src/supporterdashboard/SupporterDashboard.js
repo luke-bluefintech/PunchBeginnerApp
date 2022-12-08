@@ -35,6 +35,10 @@ function Dashboard(props) {
             goalAmount.className = "dashboard-data";
             var amountReached = document.createElement("td");
             amountReached.className = "dashboard-data";
+            var btn = document.createElement('input');
+            btn.type = "button";
+            btn.className = "btn";
+            btn.value = "Launch";
             // Creating the Text in the Cells
             projectName.innerHTML = project.project_name;
             goalAmount.innerHTML = project.project_goal;
@@ -45,6 +49,7 @@ function Dashboard(props) {
             tr.appendChild(projectName);
             tr.appendChild(goalAmount);
             tr.appendChild(amountReached);
+            tr.appendChild(btn);
             // Appending the Row to the Table
             projectsTable.appendChild(tr);
         })
@@ -52,7 +57,7 @@ function Dashboard(props) {
 
     const fetchAllProjects = () => {
         var email = props.email;
-        instance.post("/designer/project/list", { "designer_email": email })
+        instance.post("/supporter/project/list", { "supporter_email": email })
             .then(function (response) {
                 console.log(response);
                 fillTable(response.data.projects);
@@ -82,10 +87,17 @@ function Dashboard(props) {
                     <th>Project</th>
                     <th>Goal Amount</th>
                     <th>Amount Reached</th>
-                    <th>Launch Project?</th>
+                </tr>
+                <tr className="dashboard-data" onClick={() => {
+                    props.setProject(document.getElementsByClassName("dashboard-data")[0].childNodes[0].innerHTML);
+                    navigate("/supporterdashboard/supporterviewproject")
+                }}>
+                    <td>Sample Project</td>
+                    <td>$4500</td>
+                    <td>$2500</td>
                 </tr>
             </table>
-        </div>
+        </div >
     )
 };
 

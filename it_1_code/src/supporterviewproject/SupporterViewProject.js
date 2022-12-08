@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import './ViewProject.css';
+import './SupporterViewProject.css';
 
 function ViewProject(props) {
 
@@ -139,20 +139,18 @@ function ViewProject(props) {
 
             <div className="vp-split vp-right">
                 <div className="login-container">
-                    <button className="action-button" type="login" onClick={() => {
-                        navigate("/dashboard/viewproject/createpledge");
-                    }}>Create Pledge</button>
-                    <button className="action-button" type="login" onClick={() => {
-                        navigate("/dashboard");
-                    }}>Return to Dashboard</button>
-                    <br></br>
-
                     <table id="pledge-table" className="center">
                         <tr className="title-row">
                             <th>Pledge Description</th>
                             <th>Max Supporters</th>
                             <th>Amount</th>
                             <th>Delete Pledge</th>
+                        </tr>
+                        <tr className="svp-data" onClick = {() => navigate("/supporterdashboard/supporterviewproject/viewpledge")}>
+                            <td>Sample Pledge</td>
+                            <td>50</td>
+                            <td>37</td>
+                            <button type="button" className="btn" value="Delete">Delete</button>
                         </tr>
                     </table>
                 </div>

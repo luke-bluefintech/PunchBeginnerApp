@@ -40,18 +40,6 @@ function Register(props) {
                     window.alert("Error creating account. Please enter a valid email and check the password restrictions.");
                     console.log(error);
                 })
-            // Handles admin login
-        } else if (document.getElementById('admin-account').checked) {
-            instance.post("/administrator/register", { "administrator_email": email, "administrator_password": password })
-                .then(function (response) {
-                    console.log(response);
-                    window.alert("Account has been registered!");
-                    navigate("/login");
-                })
-                .catch(function (error) {
-                    window.alert("Error creating account. Please enter a valid email and check the password restrictions.");
-                    console.log(error);
-                })
             // No box selected
         } else {
             window.alert("Please select one of the options for account type");
@@ -81,8 +69,6 @@ function Register(props) {
             <label className="checkbox-label" for="supporter-account"> Supporter Account </label>
             <input type="radio" id="designer-account" name="account" />
             <label className="checkbox-label" for="designer-account"> Designer Account </label>
-            <input type="radio" id="admin-account" name="account" />
-            <label className="checkbox-label" for="admin-account"> Administrator Account</label>
 
             <label className="reg-entry-label" for="space"><b><br></br></b></label><br></br>
             <button className="signupbutton" type="signup" onClick={() => createAccount()}>Sign Up</button>
