@@ -15,7 +15,7 @@ function ViewProject(props) {
     const deleteProject = () => {
         let email = props.email;
         let project = props.project;
-        instance.post("/designer/project/delete", { "designer_email": email, "project_name": project})
+        instance.post("/designer/project/delete", { "designer_email": email, "project_name": project })
             .then(function (response) {
                 console.log(response);
                 //document.getElementsByClassName()
@@ -24,6 +24,21 @@ function ViewProject(props) {
             })
             .catch(function (error) {
                 window.alert("Error deleting project.");
+                console.log(error);
+            })
+    }
+
+    const deletePledge = (pledge_uid) => {
+        let email = props.email;
+        let pledge = pledge_uid;
+        instance.post("/designer/pledge/delete", { "designer_email": email, "pledge_uid": pledge})
+            .then(function (response) {
+                console.log(response);
+                window.alert("Pledge has been deleted!");
+                navigate("/dashboard/viewproject");
+            })
+            .catch(function (error) {
+                window.alert("Error deleting pledge.");
                 console.log(error);
             })
     }
@@ -53,11 +68,12 @@ function ViewProject(props) {
         // Deadline
         var projectDeadline = document.getElementById("project-deadline");
         projectDeadline.innerHTML = projectData.project_deadline;
-
+        
         projectData.project_pledges.forEach(pledge => {
             // Creating the Row
             var tr = document.createElement("tr");
             tr.className = "data";
+            //tr.title = pledge.pledge_uid;
             // Creating the Cells
             var pledgeDescription = document.createElement("td");
             pledgeDescription.className = "data";
@@ -78,6 +94,9 @@ function ViewProject(props) {
             btn.type = "button";
             btn.className = "btn";
             btn.value = "Delete";
+            btn.onclick = () => {
+                deletePledge(pledge.pledge_uid);
+            };
             // Getting the Table
             var pledgeTable = document.getElementById("pledge-table");
             // Appending the Text to the Cells
