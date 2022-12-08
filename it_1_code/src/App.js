@@ -11,6 +11,7 @@ import AdminDashboard from "./admindashboard/AdminDashboard";
 import SupporterDashboard from "./supporterdashboard/SupporterDashboard";
 import SupporterViewProject from "./supporterviewproject/SupporterViewProject";
 import ViewPledge from "./viewpledge/ViewPledge";
+import MeetTheTeam from "./meettheteam/MeetTheTeam";
 import './App.css';
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
         <Route path='/dashboard/viewproject/createpledge' element={<CreatePledge email={email} password={password} project={project} />} />
         <Route path='/dashboard/newproject' element={<NewProject email={email} password={password} />} />
         <Route path='/register' element={<Register email={email} password={password} />} />
+        <Route path='/meet-the-team' element={<MeetTheTeam email={email} password={password} />} />
       </Routes>
     </div>
   );

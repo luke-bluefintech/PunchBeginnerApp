@@ -25,7 +25,7 @@ input[type="checkbox"] {
 
 .please-choose {
     font-size: 13px;
-    color: rgb(100, 100, 100)
+    color: gray;
 }
 
 .reg-text,

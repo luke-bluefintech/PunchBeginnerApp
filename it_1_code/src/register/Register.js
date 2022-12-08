@@ -64,14 +64,12 @@ function Register(props) {
             <label className="reg-entry-label" for="conpsw"><b>Confirm Password</b></label><br></br>
             <input className="reg-password" type="password" name="conpsw" required /><br></br>
 
-            <div className="please-choose">Please choose one of the following:</div>
-            <input type="radio" id="supporter-account" name="account" />
-            <label className="checkbox-label" for="supporter-account"> Supporter Account </label>
-            <input type="radio" id="designer-account" name="account" />
-            <label className="checkbox-label" for="designer-account"> Designer Account </label>
-
-            <label className="reg-entry-label" for="space"><b><br></br></b></label><br></br>
-            <button className="signupbutton" type="signup" onClick={() => createAccount()}>Sign Up</button>
+            <div className="please-choose">Please choose one of the following:
+                <input type="radio" id="supporter-account" name="account" />
+                <label className="checkbox-label" for="supporter-account"> Supporter Account </label>
+                <input type="radio" id="designer-account" name="account" />
+                <label className="checkbox-label" for="designer-account"> Designer Account </label></div>
+            <button className="signupbutton" style={{ marginTop: "15px" }} type="signup" onClick={() => createAccount()}>Sign Up</button>
         </div>
     )
 }

@@ -1,0 +1,25 @@
+body {
+    overflow-y: hidden;
+}
+
+.profile-image {
+    position: relative;
+    clip-path: circle();
+    max-width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-image-border {
+    clip-path: circle();
+    background-color: black;
+    width: 204px;
+}
+
+.mtt-container {
+    margin-top: 5rem;
+    padding: 0px;
+    overflow-y: scroll;
+    height: 90.5vh;
+}
