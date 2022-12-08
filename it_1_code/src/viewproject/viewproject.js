@@ -28,10 +28,10 @@ function ViewProject(props) {
             })
     }
 
-    const deletePledge = () => {
+    const deletePledge = (pledge_uid) => {
         let email = props.email;
-        let pledge = props.pledge_uid;
-        instance.post("/designer/pledge/delete", { "designer_email": email, "pledge-uid": pledge})
+        let pledge = pledge_uid;
+        instance.post("/designer/pledge/delete", { "designer_email": email, "pledge_uid": pledge})
             .then(function (response) {
                 console.log(response);
                 window.alert("Pledge has been deleted!");
@@ -73,6 +73,7 @@ function ViewProject(props) {
             // Creating the Row
             var tr = document.createElement("tr");
             tr.className = "data";
+            //tr.title = pledge.pledge_uid;
             // Creating the Cells
             var pledgeDescription = document.createElement("td");
             pledgeDescription.className = "data";
@@ -94,7 +95,7 @@ function ViewProject(props) {
             btn.className = "btn";
             btn.value = "Delete";
             btn.onclick = () => {
-                deletePledge();
+                deletePledge(pledge.pledge_uid);
             };
             // Getting the Table
             var pledgeTable = document.getElementById("pledge-table");
