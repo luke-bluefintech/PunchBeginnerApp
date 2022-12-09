@@ -38,10 +38,6 @@ form {
     font-weight: 400;
 }
 
-br {
-    line-height: 150%;
-}
-
 /* Set a style for buttons */
 .special-login,
 .login {

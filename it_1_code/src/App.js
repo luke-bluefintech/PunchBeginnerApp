@@ -23,13 +23,14 @@ export default function App() {
   return (
     <div>
       {email != "" ? <Navbar /> : null}
+      {email != "" ? document.body.style.height = '100%' : null}
       <Routes>
         <Route path='/login' element={<Login email={email} setEmail={setEmail} password={password} setPassword={setPassword} />} />
         <Route path='/dashboard' element={<Dashboard email={email} password={password} setProject={setProject} />} />
         <Route path='/admindashboard' element={<AdminDashboard email={email} password={password} />} />
         <Route path='/supporterdashboard' element={<SupporterDashboard email={email} password={password} setProject={setProject} />} />
-        <Route path='/supporterdashboard/supporterviewproject' element={<SupporterViewProject email={email} password={password}/>} />
-        <Route path='/supporterdashboard/supporterviewproject/viewpledge' element={<ViewPledge email={email} password={password}/>} />
+        <Route path='/supporterdashboard/supporterviewproject' element={<SupporterViewProject email={email} password={password} />} />
+        <Route path='/supporterdashboard/supporterviewproject/viewpledge' element={<ViewPledge email={email} password={password} />} />
         <Route path='/dashboard/viewproject' element={<ViewProject email={email} password={password} project={project} />} />
         <Route path='/dashboard/viewproject/createpledge' element={<CreatePledge email={email} password={password} project={project} />} />
         <Route path='/dashboard/newproject' element={<NewProject email={email} password={password} />} />

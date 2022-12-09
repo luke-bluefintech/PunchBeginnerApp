@@ -19,11 +19,12 @@ function Navbar() {
 
     return (
         <div className="navigation-wrapper">
+            <div className="background-image"></div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navbar"
                 style={{ backgroundColor: "rgba(42,87,131,1)" }}>
                 <div className="content-container">
-                    <div className="punch-beginner">PunchBeginner</div>
-                    <div className="meet-the-team" onClick={ () =>
+                    <i className="punch-beginner">PunchBeginner</i>
+                    <div className="meet-the-team" onClick={() =>
                         navigate("/meet-the-team")
                     }>
                         <div className="mtt-text">Meet the Team</div>
@@ -50,7 +51,6 @@ function Navbar() {
                     </div>
                 </div>
             </nav>
-
         </div>
     )
 }

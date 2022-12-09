@@ -12,6 +12,8 @@ function Login(props) {
     const [showPassword, setShowPassword] = useState(true);
     const navigate = useNavigate();
 
+    document.body.style.height = '0'
+
     const email = createContext();
 
     const verifySupporterAccount = () => {

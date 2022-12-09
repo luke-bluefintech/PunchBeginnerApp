@@ -99,6 +99,10 @@ td {
     padding-right: 10px;
 }
 
+tr {
+    background-color: white;
+}
+
 /* Set a style for all buttons */
 .pledgebutton {
     background-color: #7393B3;
@@ -113,4 +117,18 @@ td {
 .center {
     margin-left: auto;
     margin-right: auto;
-  }
+}
+
+.launchBtn {
+    padding-top: 7%;
+    padding-bottom: 7.4%;
+    height: 100%;
+    width: 100%;
+    background-color: #FFD1DC;
+    color: white;
+    font-weight: 500;
+}
+
+.launchBtn:hover {
+    background-color: rgb(240, 180, 195);
+}

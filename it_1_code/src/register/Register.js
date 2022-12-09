@@ -48,7 +48,8 @@ function Register(props) {
 
     return (
         <div className="reg-container">
-            <label className="top-label">Register</label><br></br><br></br><br></br><br></br>
+            <div className="spacing-container" />
+            <label className="top-label">Register</label><br></br><br></br><br></br><br></br><br></br><br></br>
             <label className="reg-entry-label" for="fname"><b>First Name</b></label><br></br>
             <input className="reg-text" type="text" name="fname" required /><br></br>
 
