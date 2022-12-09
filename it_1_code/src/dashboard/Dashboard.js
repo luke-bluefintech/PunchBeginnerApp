@@ -15,15 +15,16 @@ function Dashboard(props) {
     const navigate = useNavigate();
 
     const fillTable = (projects) => {
-        var element = document.getElementsByClassName("dashboard-data"), index;
+        var element = document.getElementsByClassName("created-flag"), index;
         for (index = element.length - 1; index >= 0; index--) {
             element[index].parentNode.removeChild(element[index]);
         }
         // Clear table?
         projects.forEach(project => {
+            console.log("LAUNCHED? " + project.project_launched);
             // Creating the Row
             var tr = document.createElement("tr");
-            tr.className = "dashboard-data";
+            tr.className = "created-flag";
             // Creating the Cells
             var projectName = document.createElement("td");
             projectName.className = "dashboard-data projNameCell";
@@ -43,14 +44,20 @@ function Dashboard(props) {
                 props.setProject(tr.childNodes[0].innerHTML);
                 navigate("/dashboard/viewproject")
             };
-            var launchBtn = document.createElement("div");
-            launchBtn.innerHTML = "Launch";
-            launchBtn.className = "launchBtn";
-            launchBtn.onclick = () => {
-                launchProjects();
-            };
-            var launched = document.createElement("div");
-            launched.innerHTML = "Launched";
+            var launchBtn;
+            var launched;
+            if (project.project_launched === 0) {
+                launchBtn = document.createElement("div");
+                launchBtn.innerHTML = "Launch";
+                launchBtn.className = "launchBtn";
+                launchBtn.onclick = () => {
+                    launchProjects(projectName.innerHTML);
+                };
+            } else {
+                launched = document.createElement("div");
+                launched.className = "launched"
+                launched.innerHTML = "Launched";
+            }
             // Creating the Text in the Cells
             projectName.innerHTML = project.project_name;
             goalAmount.innerHTML = project.project_goal;
@@ -61,7 +68,11 @@ function Dashboard(props) {
             tr.appendChild(projectName);
             tr.appendChild(goalAmount);
             tr.appendChild(amountReached);
-            tr.appendChild(launchBtn);
+            if (project.project_launched === 0) {
+                tr.appendChild(launchBtn);
+            } else {
+                tr.appendChild(launched);
+            }
             // Appending the Row to the Table
             projectsTable.appendChild(tr);
         })
@@ -79,22 +90,22 @@ function Dashboard(props) {
             })
     }
 
-    const launchProjects = () => {
+    const launchProjects = (projName) => {
         var email = props.email;
-        var project = props.project;
-        instance.post("/dashboard/project/launch", { "designer_email": email, "project_name": project })
+        var project = projName;
+        instance.post("/designer/project/launch", { "project_name": project, "designer_email": email })
             .then(function (response) {
                 console.log(response);
-                fillTable(response.data.projects);
+                navigate("/dashboard");
             })
             .catch(function (error) {
                 console.log(error);
+                navigate("/dashboard");
             })
     }
 
     useEffect(() => {
         fetchAllProjects();
-        launchProjects();
     }
     );
 

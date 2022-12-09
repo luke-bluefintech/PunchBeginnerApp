@@ -58,7 +58,7 @@ function ViewProject(props) {
         projectDesc.innerHTML = projectData.project_description;
         // Goal
         var projectGoal = document.getElementById("project-goal");
-        projectGoal.innerHTML = projectData.project_goal;
+        projectGoal.innerHTML = "$" + projectData.project_funded + "/$" + projectData.project_goal;
         // Genre
         var projectGenre = document.getElementById("project-genre");
         projectGenre.innerHTML = projectData.project_type;

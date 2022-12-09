@@ -25,10 +25,10 @@ function ViewPledge(props) {
         var pledgeMaxSupporters = document.getElementById("maximum-supporters");
         pledgeMaxSupporters.innerHTML = pledgeData.pledge_max_supporters;
         // Pledge Claims
-        var pledgeNumClaims = document.getElementById("pledge_claims");
+        var pledgeNumClaims = document.getElementById("pledge-claims");
         pledgeNumClaims.innerHTML = pledgeData.pledge_num_claims;
         // Your Claims
-        var supporterNumClaims = document.getElementById("your_claims");
+        var supporterNumClaims = document.getElementById("your-claims");
         supporterNumClaims.innerHTML = pledgeData.supporter_num_claims;
 
     }
@@ -45,13 +45,28 @@ function ViewPledge(props) {
             })
     }
 
+    const claimPledge = () => {
+        let data = {
+            "num_claims": 1, "pledge_uid": props.pledgeUID, "supporter_email": props.email
+        };
+        instance.post("/supporter/pledge/claim", data)
+            .then(function (response) {
+                console.log(response);
+                navigate("/supporterdashboard/supporterviewproject/viewpledge");
+            })
+            .catch(function (error) {
+                console.log(error);
+                window.alert(error.response.data.error);
+                navigate("/supporterdashboard/supporterviewproject/viewpledge");
+            })
+    }
+
     useEffect(() => {
         fetchPledge();
     });
 
     return (
         <div className="container">
-            {console.log(props.pledgeUID)}
             <label className="label-text">Pledge Name: </label>
             <div id="pledge-name"></div>
             <br></br>
@@ -70,7 +85,13 @@ function ViewPledge(props) {
             <label className="label-text">Your Claims: </label>
             <div id="your-claims"></div>
             <br></br>
-            <button type="button" className="view-pledge-btn" value="Claim">Claim</button>
+            <button type="button" className="view-pledge-btn" value="Claim" onClick={() => {
+                claimPledge();
+            }}>Claim</button>
+            <br />
+            <button className="viewpledge-action-button" type="login" onClick={() => {
+                navigate("/supporterdashboard/supporterviewproject");
+            }}>Return to View Project</button>
         </div>
     )
 }

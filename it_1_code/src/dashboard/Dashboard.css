@@ -131,4 +131,9 @@ tr {
 
 .launchBtn:hover {
     background-color: rgb(240, 180, 195);
+    cursor: pointer;
+}
+
+.launched {
+    padding-top: 8px;
 }
