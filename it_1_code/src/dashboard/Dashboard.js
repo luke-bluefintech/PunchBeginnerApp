@@ -23,21 +23,34 @@ function Dashboard(props) {
         projects.forEach(project => {
             // Creating the Row
             var tr = document.createElement("tr");
-            tr.onclick = () => {
-                props.setProject(tr.childNodes[0].innerHTML);
-                navigate("/dashboard/viewproject")
-            };
             tr.className = "dashboard-data";
             // Creating the Cells
             var projectName = document.createElement("td");
             projectName.className = "dashboard-data projNameCell";
+            projectName.onclick = () => {
+                props.setProject(tr.childNodes[0].innerHTML);
+                navigate("/dashboard/viewproject")
+            };
             var goalAmount = document.createElement("td");
             goalAmount.className = "dashboard-data";
+            goalAmount.onclick = () => {
+                props.setProject(tr.childNodes[0].innerHTML);
+                navigate("/dashboard/viewproject")
+            };
             var amountReached = document.createElement("td");
             amountReached.className = "dashboard-data";
+            amountReached.onclick = () => {
+                props.setProject(tr.childNodes[0].innerHTML);
+                navigate("/dashboard/viewproject")
+            };
             var launchBtn = document.createElement("div");
             launchBtn.innerHTML = "Launch";
             launchBtn.className = "launchBtn";
+            launchBtn.onclick = () => {
+                launchProjects();
+            };
+            var launched = document.createElement("div");
+            launched.innerHTML = "Launched";
             // Creating the Text in the Cells
             projectName.innerHTML = project.project_name;
             goalAmount.innerHTML = project.project_goal;
@@ -66,8 +79,22 @@ function Dashboard(props) {
             })
     }
 
+    const launchProjects = () => {
+        var email = props.email;
+        var project = props.project;
+        instance.post("/dashboard/project/launch", { "designer_email": email, "project_name": project })
+            .then(function (response) {
+                console.log(response);
+                fillTable(response.data.projects);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
     useEffect(() => {
         fetchAllProjects();
+        launchProjects();
     }
     );
 
