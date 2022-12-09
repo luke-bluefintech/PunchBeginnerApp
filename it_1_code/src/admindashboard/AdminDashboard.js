@@ -64,7 +64,7 @@ function AdminDashboard(props) {
     });
 
     return (
-        <div>
+        <div className="ad-container">
             <input
                 className="dashboard-input-search"
                 type="search"
@@ -78,7 +78,7 @@ function AdminDashboard(props) {
 
             {/*Table that displays projects*/}
             <table id="projects-table" className="center">
-                <tr>
+                <tr className="title-row">
                     <th>Project</th>
                     <th>Goal Amount</th>
                     <th>Amount Reached</th>

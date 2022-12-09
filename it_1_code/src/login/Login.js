@@ -12,7 +12,7 @@ function Login(props) {
     const [showPassword, setShowPassword] = useState(true);
     const navigate = useNavigate();
 
-    document.body.style.height = '0'
+    document.body.style.height = '0';
 
     const email = createContext();
 
@@ -23,6 +23,8 @@ function Login(props) {
             .then(function (response) {
                 props.setEmail(email);
                 props.setPassword(password);
+                props.setAccType("supporter");
+                console.log(email + "   " + password);
                 navigate("/supporterdashboard");
             })
             .catch(function (error) {
@@ -38,6 +40,7 @@ function Login(props) {
             .then(function (response) {
                 props.setEmail(email);
                 props.setPassword(password);
+                props.setAccType("designer");
                 navigate("/dashboard");
             })
             .catch(function (error) {
@@ -50,7 +53,9 @@ function Login(props) {
         let password = document.getElementById("pswd").value;
         instance.post("/admin/login", { "admin_password": password })
             .then(function (response) {
+                props.setEmail(document.getElementById("email-input").value);
                 props.setPassword(password);
+                props.setAccType("admin");
                 navigate("/admindashboard");
             })
             .catch(function (error) {

@@ -74,7 +74,9 @@ function MeetTheTeam(props) {
                 </div>
             </div>
             <button className="mtt-action-button" type="login" onClick={() => {
-                navigate("/dashboard");
+                if (props.accType === "designer") { navigate("/dashboard"); }
+                else if (props.accType === "supporter") { navigate("/supporterdashboard"); }
+                else if (props.accType === "admin") { navigate("/admindashboard"); }
             }}>Return to Dashboard</button>
         </div>
     );

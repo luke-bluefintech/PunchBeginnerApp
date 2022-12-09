@@ -15,7 +15,7 @@ function ViewProject(props) {
     const deleteProject = () => {
         let email = props.email;
         let project = props.project;
-        instance.post("/designer/project/delete", { "designer_email": email, "project_name": project})
+        instance.post("/designer/project/delete", { "designer_email": email, "project_name": project })
             .then(function (response) {
                 console.log(response);
                 window.alert("Project has been deleted!");
@@ -35,14 +35,12 @@ function ViewProject(props) {
         // Project Name
         var projectName = document.getElementById("project-name");
         projectName.innerHTML = projectData.project_name;
-
-        //projectName.appendChild(projectNameTxt);
-        //Project Description
+        // Project Description
         var projectDesc = document.getElementById("project-description");
         projectDesc.innerHTML = projectData.project_description;
         // Goal
         var projectGoal = document.getElementById("project-goal");
-        projectGoal.innerHTML = projectData.project_goal;
+        projectGoal.innerHTML = "$" + projectData.project_funded + "/$" + projectData.project_goal;
         // Genre
         var projectGenre = document.getElementById("project-genre");
         projectGenre.innerHTML = projectData.project_type;
@@ -56,7 +54,11 @@ function ViewProject(props) {
         projectData.project_pledges.forEach(pledge => {
             // Creating the Row
             var tr = document.createElement("tr");
-            tr.className = "data";
+            tr.className = "svp-data dashboard-data";
+            tr.onclick = () => {
+                props.setPledgeUID(pledge.pledge_uid);
+                navigate("/supporterdashboard/supporterviewproject/viewpledge")
+            };
             // Creating the Cells
             var pledgeDescription = document.createElement("td");
             pledgeDescription.className = "data";
@@ -73,10 +75,6 @@ function ViewProject(props) {
             }
             var maxSupportersTxt = document.createTextNode(maxSuppValue);
             var amountTxt = document.createTextNode(pledge.pledge_amount);
-            var btn = document.createElement('input');
-            btn.type = "button";
-            btn.className = "btn";
-            btn.value = "Delete";
             // Getting the Table
             var pledgeTable = document.getElementById("pledge-table");
             // Appending the Text to the Cells
@@ -87,17 +85,15 @@ function ViewProject(props) {
             tr.appendChild(pledgeDescription);
             tr.appendChild(maxSupporters);
             tr.appendChild(amount);
-            tr.appendChild(btn);
             // Appending the Row to the Table
             pledgeTable.appendChild(tr);
         });
     }
 
     const fetchProject = () => {
-        let data = { "designer_email": props.email, "project_name": props.project };
-        instance.post("/designer/project/view", data)
+        let data = { "supporter_email": props.email, "project_name": props.project };
+        instance.post("/supporter/project/view", data)
             .then(function (response) {
-                console.log("RESPONSE");
                 console.log(response)
                 fillData(response.data.project)
             })
@@ -121,7 +117,7 @@ function ViewProject(props) {
                 <label className="label-text">Description: </label>
                 <div id="project-description"></div>
                 <br></br>
-                <label className="label-text">Goal: </label>
+                <label className="label-text">Funded: </label>
                 <div id="project-goal"></div>
                 <br></br>
                 <label className="label-text">Genre: </label>
@@ -144,13 +140,6 @@ function ViewProject(props) {
                             <th>Pledge Description</th>
                             <th>Max Supporters</th>
                             <th>Amount</th>
-                            <th>Delete Pledge</th>
-                        </tr>
-                        <tr className="svp-data" onClick = {() => navigate("/supporterdashboard/supporterviewproject/viewpledge")}>
-                            <td>Sample Pledge</td>
-                            <td>50</td>
-                            <td>37</td>
-                            <button type="button" className="btn" value="Delete">Delete</button>
                         </tr>
                     </table>
                 </div>

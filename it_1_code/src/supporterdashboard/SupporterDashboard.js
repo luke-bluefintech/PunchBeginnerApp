@@ -25,7 +25,7 @@ function Dashboard(props) {
             var tr = document.createElement("tr");
             tr.onclick = () => {
                 props.setProject(tr.childNodes[0].innerHTML);
-                navigate("/dashboard/viewproject")
+                navigate("/supporterdashboard/supporterviewproject")
             };
             tr.className = "dashboard-data";
             // Creating the Cells
@@ -35,10 +35,6 @@ function Dashboard(props) {
             goalAmount.className = "dashboard-data";
             var amountReached = document.createElement("td");
             amountReached.className = "dashboard-data";
-            var btn = document.createElement('input');
-            btn.type = "button";
-            btn.className = "btn";
-            btn.value = "Launch";
             // Creating the Text in the Cells
             projectName.innerHTML = project.project_name;
             goalAmount.innerHTML = project.project_goal;
@@ -49,15 +45,20 @@ function Dashboard(props) {
             tr.appendChild(projectName);
             tr.appendChild(goalAmount);
             tr.appendChild(amountReached);
-            tr.appendChild(btn);
             // Appending the Row to the Table
             projectsTable.appendChild(tr);
         })
     }
 
+    const onhandleSearch = (event) => {
+        let value = event.target.value;
+        fetchAllProjects(value)
+    }
+
     const fetchAllProjects = () => {
         var email = props.email;
-        instance.post("/supporter/project/list", { "supporter_email": email })
+        var value = document.getElementById("myInput").value;
+        instance.post("/supporter/project/search", { "supporter_email": email, "project_search": value })
             .then(function (response) {
                 console.log(response);
                 fillTable(response.data.projects);
@@ -78,6 +79,7 @@ function Dashboard(props) {
                 className="dashboard-input-search"
                 type="search"
                 id="myInput"
+                onChange={(event) => onhandleSearch(event)}
                 placeholder="Search for Projects" />
             <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
 
