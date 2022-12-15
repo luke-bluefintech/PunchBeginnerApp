@@ -1,6 +1,6 @@
 {
-  "name": "it_1_code",
-  "version": "0.1.0",
+  "name": "it_1_code", 
+  "version": "0.1.0", "homepage" : "/login",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
