@@ -1,4 +1,23 @@
 .ad-container {
-    margin-top: 7rem;
+    margin-top: 3.7vh;
+    height: 91.3vh;
     text-align: center;
+    overflow-y: scroll;
+}
+
+.reap-project-button {
+    display: inline-block;
+    color: #FFFFFF;
+    font-weight: 400;
+    background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(247, 195, 210));
+    border: .6666px solid black;
+    border-radius: 3px;
+    letter-spacing: 0.15px;
+    width: 40px;
+    font-size: 14px !important;
+    margin: 5px;
+    width: 200px;
+    height: 35px;
+    padding: .5em .5em .5em .5em;
+    bottom: 100%;
 }

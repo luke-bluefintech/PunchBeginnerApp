@@ -52,7 +52,18 @@ function AdminDashboard(props) {
     const fetchAllProjects = () => {
         instance.post("/admin/project/list", { "admin_password": props.password })
             .then(function (response) {
-                fillTable(response.data.projects)
+                fillTable(response.data.projects);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    const reapProjects = () => {
+        instance.post("/admin/project/reap", { "admin_password": props.password })
+            .then(function (response) {
+                fetchAllProjects();
+                console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
@@ -65,16 +76,10 @@ function AdminDashboard(props) {
 
     return (
         <div className="ad-container">
-            <input
-                className="dashboard-input-search"
-                type="search"
-                id="myInput"
-                placeholder="Search for Projects" />
-            <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
-            <button className="button-create-project" onClick={() => {
-                //NewProject.password = AdminDashboard.password;
-                //setShowNewProject(true);
-            }}>Create New Project</button>
+            <br />
+            <button className="reap-project-button" onClick={() => {
+                reapProjects();
+            }}>Reap Projects</button> <br />
 
             {/*Table that displays projects*/}
             <table id="projects-table" className="center">
@@ -84,6 +89,7 @@ function AdminDashboard(props) {
                     <th>Amount Reached</th>
                 </tr>
             </table>
+            <br /><br />
         </div>
     )
 };
