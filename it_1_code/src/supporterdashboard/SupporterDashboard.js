@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import './SupporterDashboard.css';
 
 const instance = axios.create({

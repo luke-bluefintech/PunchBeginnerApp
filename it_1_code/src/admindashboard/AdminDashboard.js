@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import './AdminDashboard.css';
 
 const instance = axios.create({
@@ -54,7 +52,7 @@ function AdminDashboard(props) {
             var amountReachedTxt = document.createTextNode(project.project_funded);
             var btn = document.createElement('input');
             btn.type = "button";
-            btn.className = "btn";
+            btn.className = "delete-btn";
             btn.value = "Delete";
             btn.onclick = () => {
                 deleteAdminProject();

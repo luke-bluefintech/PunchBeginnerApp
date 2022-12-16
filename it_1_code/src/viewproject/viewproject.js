@@ -94,7 +94,7 @@ function ViewProject(props) {
             var amountTxt = document.createTextNode(pledge.pledge_amount);
             var btn = document.createElement('input');
             btn.type = "button";
-            btn.className = "btn";
+            btn.className = "delete-btn";
             btn.value = "Delete";
             btn.onclick = () => {
                 deletePledge(pledge.pledge_uid);
@@ -137,7 +137,6 @@ function ViewProject(props) {
     return (
         <div className="info-div" style={{ marginTop: "8%" }}>
             <div className="vp-split vp-left">
-                <img className='heading--logo' src='https://iteration1code.s3.us-east-2.amazonaws.com/PB_Image.png' />
                 <br></br>
                 <label className="label-text">Project Name: </label>
                 <div id="project-name"></div>

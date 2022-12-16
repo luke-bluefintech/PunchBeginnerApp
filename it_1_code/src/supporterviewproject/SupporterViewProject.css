@@ -88,7 +88,7 @@
     height: 87%;
     top: 13%;
     left: 2%;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 /* Control the right side */

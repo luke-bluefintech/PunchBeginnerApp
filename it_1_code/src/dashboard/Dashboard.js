@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import './Dashboard.css';
 
 const instance = axios.create({
@@ -116,7 +115,6 @@ function Dashboard(props) {
                 type="search"
                 id="myInput"
                 placeholder="Search for Projects" />
-            <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
             <button className="button-create-project" onClick={() => {
                 navigate("/dashboard/newproject");
             }}>Create New Project</button>
