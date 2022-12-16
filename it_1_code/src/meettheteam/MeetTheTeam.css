@@ -1,0 +1,67 @@
+body {
+    overflow-y: hidden;
+}
+
+.profile-image {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    clip-path: circle();
+    max-width: 200px;
+}
+
+.profile-image-border {
+    position: relative;
+    height: 204px;
+    width: 204px;
+    clip-path: circle();
+    background-color: gray;
+}
+
+.mtt-container {
+    margin-top: 3.7vh;
+    padding: 0px;
+    overflow-y: scroll;
+    height: 91.4vh;
+}
+
+.profile-box {
+    height: 20vh;
+    display: flex;
+    margin-left: auto;
+    width: 80vw;
+}
+
+.picture-right {
+    position: relative;
+    float: right;
+}
+
+.developer-data {
+    height: 50px;
+    color: rgb(150, 150, 150);
+    width: 50vw;
+}
+
+.data-right {
+    text-align: right;
+}
+
+.mtt-action-button {
+    background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(247, 195, 210));
+    border: 1px solid gray;
+    color: white;
+    padding: 14px 20px;
+    display: block;
+    margin: 10vh auto 10vh auto;
+    cursor: pointer;
+    width: 20%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}

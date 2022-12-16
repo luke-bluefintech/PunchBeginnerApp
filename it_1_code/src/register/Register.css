@@ -1,0 +1,84 @@
+/* Bordered form */
+form {
+    border: 3px solid #f1f1f1;
+}
+
+/* Inputs for names, username, password */
+
+.checkbox-label {
+    font-size: 12px;
+    color: gray;
+}
+
+input[type="checkbox"] {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(.75);
+    /* IE */
+    -moz-transform: scale(.75);
+    /* FF */
+    -webkit-transform: scale(.75);
+    /* Safari and Chrome */
+    -o-transform: scale(.75);
+    /* Opera */
+    transform: scale(.75);
+}
+
+.please-choose {
+    font-size: 13px;
+    color: gray;
+}
+
+.reg-text,
+.reg-password {
+    width: 30%;
+    height: 36px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 18px;
+}
+
+/* Set a style for sign up button */
+.signupbutton {
+    background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(247, 195, 210));
+    border: 1px solid rgb(255, 218, 226);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    cursor: pointer;
+    width: 20%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Add a hover effect for button */
+.signupbutton:hover {
+    opacity: 0.8;
+}
+
+.reg-entry-label {
+    position: absolute;
+    left: 35.5%;
+    font-weight: 500;
+}
+
+.spacing-container {
+    height: 7rem;
+}
+
+.reg-container {
+    text-align: center;
+}
+
+.top-label {
+    position: absolute;
+    left: 35%;
+    font-weight: 500;
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffd1dc;
+}

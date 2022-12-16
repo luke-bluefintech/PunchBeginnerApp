@@ -1,0 +1,54 @@
+/* Bordered form */
+form {
+    border: 3px solid #f1f1f1;
+}
+
+/* Inputs for text */
+
+input[type=text] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 2px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.np-input-label {
+    font-weight: 400;
+}
+
+/* Set a style for buttons */
+.create-button {
+    background-image: linear-gradient(to right, rgb(255, 209, 220), rgb(247, 195, 210));
+    border: 1px solid rgb(255, 218, 226);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    cursor: pointer;
+    width: 30%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Add a hover effect for buttons */
+.createbutton:hover {
+    opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+    margin-top: 7%;
+    padding: 0px;
+}
+
+.container {
+    /* Center horizontally*/
+    text-align: center;
+}
