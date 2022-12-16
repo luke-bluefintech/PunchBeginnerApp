@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +12,24 @@ const instance = axios.create({
 
 function AdminDashboard(props) {
 
-    let password = "";
+    //let password = "";
+
+    const navigate = useNavigate();
+
+    const deleteAdminProject = () => {
+        let password = props.admin_password;
+        let project = props.project;
+        instance.post("/admin/project/delete", { "admin_password": password, "project_name": project })
+            .then(function (response) {
+                console.log(response);
+                window.alert("Project has been deleted!");
+                navigate("/admindashboard");
+            })
+            .catch(function (error) {
+                window.alert("Error deleting project.");
+                console.log(error);
+            })
+    }
 
     const fillTable = (projects) => {
         var element = document.getElementsByClassName("data"), index;
@@ -34,6 +52,13 @@ function AdminDashboard(props) {
             var projectNameTxt = document.createTextNode(project.project_name);
             var goalAmountTxt = document.createTextNode(project.project_goal);
             var amountReachedTxt = document.createTextNode(project.project_funded);
+            var btn = document.createElement('input');
+            btn.type = "button";
+            btn.className = "btn";
+            btn.value = "Delete";
+            btn.onclick = () => {
+                deleteAdminProject();
+            };
             // Getting the Table
             var projectsTable = document.getElementById("projects-table");
             // Appending the Text to the Cells
@@ -44,6 +69,7 @@ function AdminDashboard(props) {
             tr.appendChild(projectName);
             tr.appendChild(goalAmount);
             tr.appendChild(amountReached);
+            tr.appendChild(btn);
             // Appending the Row to the Table
             projectsTable.appendChild(tr);
         })
@@ -75,13 +101,13 @@ function AdminDashboard(props) {
                 //NewProject.password = AdminDashboard.password;
                 //setShowNewProject(true);
             }}>Create New Project</button>
-
             {/*Table that displays projects*/}
             <table id="projects-table" className="center">
                 <tr className="title-row">
                     <th>Project</th>
                     <th>Goal Amount</th>
                     <th>Amount Reached</th>
+                    <th>Delete Project</th>
                 </tr>
             </table>
         </div>

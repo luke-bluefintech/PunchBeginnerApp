@@ -75,6 +75,8 @@ function ViewProject(props) {
             tr.className = "data";
             //tr.title = pledge.pledge_uid;
             // Creating the Cells
+            var pledgeSupporters= document.createElement("td");
+            pledgeSupporters.className = "data";
             var pledgeDescription = document.createElement("td");
             pledgeDescription.className = "data";
             var maxSupporters = document.createElement("td");
@@ -100,10 +102,12 @@ function ViewProject(props) {
             // Getting the Table
             var pledgeTable = document.getElementById("pledge-table");
             // Appending the Text to the Cells
+            
             pledgeDescription.appendChild(pledgeDescriptionTxt);
             maxSupporters.appendChild(maxSupportersTxt);
             amount.appendChild(amountTxt);
             // Appending the Cells to the Row
+            tr.appendChild(pledgeSupporters);
             tr.appendChild(pledgeDescription);
             tr.appendChild(maxSupporters);
             tr.appendChild(amount);
@@ -169,6 +173,7 @@ function ViewProject(props) {
 
                     <table id="pledge-table" className="center">
                         <tr className="title-row">
+                            <th>Supporters</th>
                             <th>Pledge Description</th>
                             <th>Max Supporters</th>
                             <th>Amount</th>
