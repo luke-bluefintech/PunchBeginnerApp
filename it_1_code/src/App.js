@@ -29,7 +29,7 @@ export default function App() {
       <Routes>
         <Route path='/login' element={<Login email={email} setEmail={setEmail} password={password} setPassword={setPassword} setAccType={setAccType}/>} />
         <Route path='/dashboard' element={<Dashboard email={email} password={password} setProject={setProject} />} />
-        <Route path='/admindashboard' element={<AdminDashboard email={email} password={password} />} />
+        <Route path='/admindashboard' element={<AdminDashboard email={email} password={password} project={project}/>} />
         <Route path='/supporterdashboard' element={<SupporterDashboard email={email} password={password} setProject={setProject} />} />
         <Route path='/supporterdashboard/supporterviewproject' element={<SupporterViewProject email={email} password={password} project={project} setPledgeUID={setPledgeUID}/>} />
         <Route path='/supporterdashboard/supporterviewproject/viewpledge' element={<ViewPledge email={email} password={password} pledgeUID={pledgeUID} />} />
