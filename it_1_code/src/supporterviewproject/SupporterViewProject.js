@@ -102,6 +102,17 @@ function ViewProject(props) {
             })
     }
 
+    const giveDirectSupport = () => {
+        let data = { "supporter_email": props.email, "project_name": props.project, "funding": document.getElementById("add-funds-input").value };
+        instance.post("/supporter/project/support", data)
+            .then(function (response) {
+                console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
     useEffect(() => {
         fetchProject();
     });
@@ -135,8 +146,8 @@ function ViewProject(props) {
             <div className="vp-split vp-right">
                 <div className="login-container">
                     <label>Direct Support: </label>
-                    <input className="add-funds-input" placeholder="$"></input>
-                    <button className="add-funds-submit-button">Support</button>
+                    <input className="add-funds-input" id="add-funds-input" placeholder="$"></input>
+                    <button className="add-funds-submit-button" onClick={() => giveDirectSupport()}>Support</button>
                     <table id="pledge-table" className="center">
                         <tr className="title-row">
                             <th>Pledge Description</th>

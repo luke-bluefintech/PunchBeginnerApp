@@ -31,7 +31,7 @@ function ViewProject(props) {
     const deletePledge = (pledge_uid) => {
         let email = props.email;
         let pledge = pledge_uid;
-        instance.post("/designer/pledge/delete", { "designer_email": email, "pledge_uid": pledge})
+        instance.post("/designer/pledge/delete", { "designer_email": email, "pledge_uid": pledge })
             .then(function (response) {
                 console.log(response);
                 window.alert("Pledge has been deleted!");
@@ -68,14 +68,14 @@ function ViewProject(props) {
         // Deadline
         var projectDeadline = document.getElementById("project-deadline");
         projectDeadline.innerHTML = projectData.project_deadline;
-        
+
         projectData.project_pledges.forEach(pledge => {
             // Creating the Row
             var tr = document.createElement("tr");
             tr.className = "data";
             //tr.title = pledge.pledge_uid;
             // Creating the Cells
-            var pledgeSupporters= document.createElement("td");
+            var pledgeSupporters = document.createElement("td");
             pledgeSupporters.className = "data";
             var pledgeDescription = document.createElement("td");
             pledgeDescription.className = "data";
@@ -90,6 +90,7 @@ function ViewProject(props) {
             if (maxSuppValue == 0) {
                 maxSuppValue = "Unlimited";
             }
+            var pledgeSupportersTxt = document.createTextNode(pledge.pledge_supporters);
             var maxSupportersTxt = document.createTextNode(maxSuppValue);
             var amountTxt = document.createTextNode(pledge.pledge_amount);
             var btn = document.createElement('input');
@@ -102,7 +103,8 @@ function ViewProject(props) {
             // Getting the Table
             var pledgeTable = document.getElementById("pledge-table");
             // Appending the Text to the Cells
-            
+
+            pledgeSupporters.appendChild(pledgeSupportersTxt);
             pledgeDescription.appendChild(pledgeDescriptionTxt);
             maxSupporters.appendChild(maxSupportersTxt);
             amount.appendChild(amountTxt);
@@ -181,7 +183,6 @@ function ViewProject(props) {
                     </table>
                 </div>
             </div>
-            {/* NOT NEEDED YET <button className="pledgebutton-vp" onClick={() => setShowPledge(true)} type="pledge">Pledge</button>*/}
         </div>
     )
 };

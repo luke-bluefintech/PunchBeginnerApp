@@ -45,6 +45,7 @@ function Dashboard(props) {
             tr.appendChild(amountReached);
             // Appending the Row to the Table
             projectsTable.appendChild(tr);
+            document.getElementById("your-funds").value = project.funds;
         })
     }
 
@@ -66,6 +67,19 @@ function Dashboard(props) {
             })
     }
 
+    const addFunds = () => {
+        var email = props.email;
+        var funds = document.getElementById("funds-input").value;
+        instance.post("/supporter/project/search", { "supporter_email": email, "funds": funds })
+            .then(function (response) {
+                console.log(response);
+                fillTable(response.data.projects);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
     useEffect(() => {
         fetchAllProjects();
     }
@@ -74,10 +88,10 @@ function Dashboard(props) {
     return (
         <div className="supporter-container">
             <label className="label-text">Your Funds: </label>
-
+            <label id="your-funds" className="label-text"></label>
             <label className="label-text">Add Funds: </label>
-            <input className="add-funds-input"></input>
-            <button className="add-funds-submit-button">Submit</button>
+            <input id="funds-input" className="add-funds-input"></input>
+            <button className="add-funds-submit-button" onClick={() => { addFunds() }}>Submit</button>
             <br /><br />
             <input
                 className="dashboard-input-search"
@@ -85,8 +99,6 @@ function Dashboard(props) {
                 id="myInput"
                 onChange={(event) => onhandleSearch(event)}
                 placeholder="Search for Projects" />
-
-            {/*Table that displays projects*/}
             <table id="projects-table" className="center">
                 <tr className="title-row">
                     <th>Project</th>
