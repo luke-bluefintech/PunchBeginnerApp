@@ -29,7 +29,7 @@ form {
 }
 
 .welcome-back {
-    top: 51%;
+    top: 51vh;
 }
 
 .thank-you {
@@ -130,6 +130,10 @@ a {
 .left {
     left: 0;
     background-image: url("https://iteration1code.s3.us-east-2.amazonaws.com/Group_Image.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     background-position: center;
     overflow: hidden;
 }

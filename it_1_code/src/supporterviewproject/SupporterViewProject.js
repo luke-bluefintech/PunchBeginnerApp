@@ -135,6 +135,9 @@ function ViewProject(props) {
 
             <div className="vp-split vp-right">
                 <div className="login-container">
+                    <label>Label: </label>
+                    <input className="add-funds-input"></input>
+                    <button className="add-funds-submit-button">Submit</button>
                     <table id="pledge-table" className="center">
                         <tr className="title-row">
                             <th>Pledge Description</th>

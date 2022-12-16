@@ -74,14 +74,19 @@ function Dashboard(props) {
     );
 
     return (
-        <div className="container">
+        <div className="supporter-container">
+            <label className="label-text">Your Funds: </label>
+
+            <label className="label-text">Add Funds: </label>
+            <input className="add-funds-input"></input>
+            <button className="add-funds-submit-button">Submit</button>
+            <br /><br />
             <input
                 className="dashboard-input-search"
                 type="search"
                 id="myInput"
                 onChange={(event) => onhandleSearch(event)}
                 placeholder="Search for Projects" />
-            <button className="button-filter" >{<FontAwesomeIcon icon={faFilter} />}</button>
 
             {/*Table that displays projects*/}
             <table id="projects-table" className="center">
