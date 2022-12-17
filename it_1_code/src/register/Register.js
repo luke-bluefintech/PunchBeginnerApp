@@ -25,7 +25,7 @@ function Register(props) {
                     navigate("/login");
                 })
                 .catch(function (error) {
-                    window.alert("Error creating account. Please enter a valid email and check the password restrictions.");
+                    window.alert(error.response.data.error);
                     console.log(error);
                 })
             // Handles designer login
@@ -37,7 +37,7 @@ function Register(props) {
                     navigate("/login");
                 })
                 .catch(function (error) {
-                    window.alert("Error creating account. Please enter a valid email and check the password restrictions.");
+                    window.alert(error.response.data.error);
                     console.log(error);
                 })
             // No box selected
@@ -50,12 +50,7 @@ function Register(props) {
         <div className="reg-container">
             <div className="spacing-container" />
             <label className="top-label">Register</label><br></br><br></br><br></br><br></br><br></br><br></br>
-            <label className="reg-entry-label" for="fname"><b>First Name</b></label><br></br>
-            <input className="reg-text" type="text" name="fname" required /><br></br>
-
-            <label className="reg-entry-label" for="lname"><b>Last Name</b></label><br></br>
-            <input className="reg-text" type="text" name="lname" required /><br></br>
-
+            
             <label className="reg-entry-label" for="uname"><b>Enter Email</b></label><br></br>
             <input className="reg-text" type="text" id="reg-email-input" name="uname" required /><br></br>
 
@@ -76,3 +71,11 @@ function Register(props) {
 }
 
 export default Register;
+
+/*
+<label className="reg-entry-label" for="fname"><b>First Name</b></label><br></br>
+<input className="reg-text" type="text" name="fname" required /><br></br>
+
+<label className="reg-entry-label" for="lname"><b>Last Name</b></label><br></br>
+<input className="reg-text" type="text" name="lname" required /><br></br>
+*/

@@ -31,6 +31,12 @@ function Dashboard(props) {
                 props.setProject(tr.childNodes[0].innerHTML);
                 navigate("/dashboard/viewproject")
             };
+            var projectType = document.createElement("td");
+            projectType.className = "dashboard-data";
+            projectType.onclick = () => {
+                props.setProject(tr.childNodes[0].innerHTML);
+                navigate("/dashboard/viewproject")
+            };
             var goalAmount = document.createElement("td");
             goalAmount.className = "dashboard-data";
             goalAmount.onclick = () => {
@@ -59,12 +65,14 @@ function Dashboard(props) {
             }
             // Creating the Text in the Cells
             projectName.innerHTML = project.project_name;
-            goalAmount.innerHTML = project.project_goal;
-            amountReached.innerHTML = project.project_funded;
+            projectType.innerHTML = project.project_type;
+            goalAmount.innerHTML = `\$${project.project_goal.toFixed(2)}`;
+            amountReached.innerHTML = `\$${project.project_funded.toFixed(2)}`;
             // Getting the Table
             var projectsTable = document.getElementById("projects-table");
             // Appending the Cells to the Row
             tr.appendChild(projectName);
+            tr.appendChild(projectType);
             tr.appendChild(goalAmount);
             tr.appendChild(amountReached);
             if (project.project_launched === 0) {
@@ -114,15 +122,19 @@ function Dashboard(props) {
                 className="dashboard-input-search"
                 type="search"
                 id="myInput"
-                placeholder="Search for Projects" />
+                placeholder="Search for Projects" hidden/>
             <button className="button-create-project" onClick={() => {
                 navigate("/dashboard/newproject");
-            }}>Create New Project</button>
+            }}>Create New Project</button> <br />
+            <button className="button-create-project" onClick={() => {
+                navigate("/dashboard");
+            }}>Refresh Projects</button> <br />
 
             {/*Table that displays projects*/}
             <table id="projects-table" className="center">
                 <tr className="title-row">
                     <th>Project</th>
+                    <th>Type</th>
                     <th>Goal Amount</th>
                     <th>Amount Reached</th>
                     <th>Launch Project?</th>

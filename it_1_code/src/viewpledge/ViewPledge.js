@@ -12,18 +12,25 @@ function ViewPledge(props) {
     const navigate = useNavigate();
 
     const fillPledgeData = (pledgeData) => {
+        document.getElementById("max-msg").hidden = (pledgeData.pledge_max_supporters === 0) || (pledgeData.pledge_num_claims < pledgeData.pledge_max_supporters);
+        document.getElementById("claim-pledge-btn").hidden = !document.getElementById("max-msg").hidden;
         // Pledge Name
         var pledgeName = document.getElementById("pledge-name");
         pledgeName.innerHTML = pledgeData.project_name;
         // Pledge Amount
         var pledgeAmount = document.getElementById("pledge-amount");
-        pledgeAmount.innerHTML = pledgeData.pledge_amount;
+        const pledgeAmt = (Math.round(pledgeData.pledge_amount * 100) / 100).toFixed(2);
+        pledgeAmount.innerHTML = `\$${pledgeAmt}`;
         // Description
         var pledgeDescription = document.getElementById("description");
         pledgeDescription.innerHTML = pledgeData.pledge_description;
         // Maximum Supporters
         var pledgeMaxSupporters = document.getElementById("maximum-supporters");
-        pledgeMaxSupporters.innerHTML = pledgeData.pledge_max_supporters;
+        var maxSupportersTxt = pledgeData.pledge_max_supporters;
+        if (maxSupportersTxt === 0) {
+            maxSupportersTxt = "Unlimited";
+        }
+        pledgeMaxSupporters.innerHTML = maxSupportersTxt;
         // Pledge Claims
         var pledgeNumClaims = document.getElementById("pledge-claims");
         pledgeNumClaims.innerHTML = pledgeData.pledge_num_claims;
@@ -37,7 +44,7 @@ function ViewPledge(props) {
         let data = { "pledge_uid": props.pledgeUID, "supporter_email": props.email };
         instance.post("/supporter/pledge/view", data)
             .then(function (response) {
-                console.log(response)
+                console.log(response);
                 fillPledgeData(response.data.pledge);
             })
             .catch(function (error) {
@@ -85,9 +92,10 @@ function ViewPledge(props) {
             <label className="label-text">Your Claims: </label>
             <div id="your-claims"></div>
             <br></br>
-            <button type="button" className="view-pledge-btn" value="Claim" onClick={() => {
+            <button type="button" className="view-pledge-btn" id="claim-pledge-btn" value="Claim" hidden onClick={() => {
                 claimPledge();
             }}>Claim</button>
+            <label className="label-text" id="max-msg" hidden>Pledge Claimed Maximum Number of Times!</label>
             <br />
             <button className="viewpledge-action-button" type="login" onClick={() => {
                 navigate("/supporterdashboard/supporterviewproject");

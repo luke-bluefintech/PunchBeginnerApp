@@ -16,9 +16,14 @@ function CreatePledge(props) {
             "project_name": props.project,
             "designer_email": props.email,
             "pledge_description": document.getElementById("reward").value,
-            "pledge_max_supporters": document.getElementById("how-much").value,
-            "pledge_amount": document.getElementById("max").value,
+            "pledge_max_supporters": document.getElementById("max").value,
+            "pledge_amount": document.getElementById("how-much").value,
         };
+        console.log("heyyy");
+        console.log(data.pledge_max_supporters);
+        if (isNaN(data.pledge_max_supporters)) {
+            data.pledge_max_supporters = 0;
+        }
         instance.post("/designer/pledge/create", data)
             .then(function (response) {
                 // Set ViewProjects.project to the project name
@@ -34,15 +39,15 @@ function CreatePledge(props) {
         <div className="container">
             <label className="label-text">{props.project_name}</label>
             <br></br>
-            <label className="label-text">What do they get?</label>
+            <label className="label-text">Pledge reward:</label>
             <br></br>
             <input id="reward" type="shorttext" name="goal" required />
             <br></br>
-            <label className="label-text">How much?</label>
+            <label className="label-text">Pledge cost:</label>
             <br></br>
             <input id="how-much" type="shorttext" name="goal" required />
             <br></br>
-            <label className="label-text">Maximum number?</label>
+            <label className="label-text">Maximum number of supporters:</label>
             <br></br>
             <input id="max" type="shorttext" name="goal" placeholder="Enter &quot;0&quot; or leave this secton blank for no maximum" />
             <br></br><br></br>

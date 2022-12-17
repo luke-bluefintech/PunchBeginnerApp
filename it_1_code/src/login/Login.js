@@ -28,7 +28,7 @@ function Login(props) {
                 navigate("/supporterdashboard");
             })
             .catch(function (error) {
-                window.alert("Error logging in as a supporter. Please check your username and password.");
+                window.alert(error.response.data.error);
                 console.log(error);
             })
     }
@@ -44,7 +44,7 @@ function Login(props) {
                 navigate("/dashboard");
             })
             .catch(function (error) {
-                window.alert("Error logging in as a designer. Please check your username and password.");
+                window.alert(error.response.data.error);
                 console.log(error);
             })
     }
@@ -59,7 +59,7 @@ function Login(props) {
                 navigate("/admindashboard");
             })
             .catch(function (error) {
-                window.alert("Error logging in as an admin. Please check your username and password.");
+                window.alert(error.response.data.error);
                 console.log(error);
             })
     }
@@ -71,7 +71,9 @@ function Login(props) {
                 <div className="color-pink"></div>
                 <i className="logo-title">PunchBeginner</i>
                 <div className="welcome-back">Welcome Back</div>
-                <div className="thank-you">Thank you for using the site that powers startups, small businesses, and projects alike.</div>
+                <div className="thank-you">
+                Special thanks to Professor Heineman for all that he has done for us throughout the term; he enabled a truly unique
+                and exciting experience for all of us, and we are so grateful for all his hard work to make the course possible.</div>
             </div>
             <div className="split right">
                 <div className="login-container">
@@ -90,8 +92,6 @@ function Login(props) {
                         <i className="bi bi-eye-slash input-password-eye" onClick={() => { setShowPassword(false) }} /> :
                         <i className="bi bi-eye input-password-eye" onClick={() => { setShowPassword(true) }} />}
                     <br></br>
-                    <div className="no-account">Don't have an account? <a href={"/register"}>Sign up</a></div>
-                    <br></br>
 
                     <button className="login" type="login" onClick={() => {
                         verifySupporterAccount();
@@ -103,6 +103,9 @@ function Login(props) {
                     <button className="special-login" type="login" onClick={() => {
                         verifyAdminAccount();
                     }}>Admin Login</button>
+                    <button className="login" type="login" onClick={() => {
+                        navigate("/register");
+                    }}>Click Here To Register</button>
                     <div className="copy-right">Powered by team L’étoile du Nord</div>
                 </div>
             </div>

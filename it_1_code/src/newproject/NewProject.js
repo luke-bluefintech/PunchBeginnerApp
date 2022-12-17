@@ -50,7 +50,7 @@ function NewProject(props) {
             <input id="project-goal" type="shorttext" name="goal" required />
 
             <label className="np-input-label" for="deadline"><br></br>Deadline:<br></br></label>
-            <input id="project-deadline" type="shorttext" name="deadline" required />
+            <input id="project-deadline" type="shorttext" name="deadline" placeholder="YYYY-MM-DD" required />
 
             <label for="space"><b><br></br><br></br></b></label>
             <button className="create-button" onClick={() => {

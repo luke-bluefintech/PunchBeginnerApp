@@ -12,21 +12,6 @@ function ViewProject(props) {
 
     const navigate = useNavigate();
 
-    const deleteProject = () => {
-        let email = props.email;
-        let project = props.project;
-        instance.post("/designer/project/delete", { "designer_email": email, "project_name": project })
-            .then(function (response) {
-                console.log(response);
-                window.alert("Project has been deleted!");
-                navigate("/dashboard");
-            })
-            .catch(function (error) {
-                window.alert("Error deleting project.");
-                console.log(error);
-            })
-    }
-
     const fillData = (projectData) => {
         var element = document.getElementsByClassName("data"), index;
         for (index = element.length - 1; index >= 0; index--) {
@@ -40,7 +25,9 @@ function ViewProject(props) {
         projectDesc.innerHTML = projectData.project_description;
         // Goal
         var projectGoal = document.getElementById("project-goal");
-        projectGoal.innerHTML = "$" + projectData.project_funded + "/$" + projectData.project_goal;
+        const fundAmt = (Math.round(projectData.project_funded * 100) / 100).toFixed(2);
+        const goalAmt = (Math.round(projectData.project_goal * 100) / 100).toFixed(2);
+        projectGoal.innerHTML = `\$${fundAmt}/\$${goalAmt}`;
         // Genre
         var projectGenre = document.getElementById("project-genre");
         projectGenre.innerHTML = projectData.project_type;
@@ -74,7 +61,8 @@ function ViewProject(props) {
                 maxSuppValue = "Unlimited";
             }
             var maxSupportersTxt = document.createTextNode(maxSuppValue);
-            var amountTxt = document.createTextNode(pledge.pledge_amount);
+            const pledgeAmt = (Math.round(pledge.pledge_amount * 100) / 100).toFixed(2);
+            var amountTxt = document.createTextNode(`\$${pledgeAmt}`);
             // Getting the Table
             var pledgeTable = document.getElementById("pledge-table");
             // Appending the Text to the Cells
@@ -98,17 +86,21 @@ function ViewProject(props) {
                 fillData(response.data.project)
             })
             .catch(function (error) {
+                window.alert(error.response.data.error);
                 console.log(error);
             })
     }
 
     const giveDirectSupport = () => {
-        let data = { "supporter_email": props.email, "project_name": props.project, "funding": document.getElementById("add-funds-input").value };
+        let data = { "supporter_email": props.email, "project_name": props.project, "direct_support_amount": document.getElementById("add-funds-input").value };
         instance.post("/supporter/project/support", data)
             .then(function (response) {
-                console.log(response)
+                console.log(response);
+                window.alert("Direct support contribution made!");
+                fetchProject();
             })
             .catch(function (error) {
+                window.alert(error.response.data.error);
                 console.log(error);
             })
     }
@@ -139,12 +131,15 @@ function ViewProject(props) {
                 <label className="label-text">Deadline: </label>
                 <div id="project-deadline"></div>
                 <br></br>
-                <button className="action-button" type="login" onClick={() => deleteProject()}>Delete Project</button>
-                <br></br><br></br><br></br><br></br>
+                <br></br><br></br><br></br>
             </div>
 
             <div className="vp-split vp-right">
                 <div className="login-container">
+                    <button className="action-button" type="login" onClick={() => {
+                        navigate("/supporterdashboard");
+                    }}>Return to Dashboard</button>
+                    <br /><br />
                     <label>Direct Support: </label>
                     <input className="add-funds-input" id="add-funds-input" placeholder="$"></input>
                     <button className="add-funds-submit-button" onClick={() => giveDirectSupport()}>Support</button>

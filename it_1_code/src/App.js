@@ -27,6 +27,7 @@ export default function App() {
       {email != "" ? <Navbar /> : null}
       {email != "" ? document.body.style.height = '100%' : null}
       <Routes>
+        <Route path='/' element={<Login email={email} setEmail={setEmail} password={password} setPassword={setPassword} setAccType={setAccType}/>} />
         <Route path='/login' element={<Login email={email} setEmail={setEmail} password={password} setPassword={setPassword} setAccType={setAccType}/>} />
         <Route path='/dashboard' element={<Dashboard email={email} password={password} setProject={setProject} />} />
         <Route path='/admindashboard' element={<AdminDashboard email={email} password={password} project={project}/>} />

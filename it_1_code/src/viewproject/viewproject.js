@@ -58,7 +58,16 @@ function ViewProject(props) {
         projectDesc.innerHTML = projectData.project_description;
         // Goal
         var projectGoal = document.getElementById("project-goal");
-        projectGoal.innerHTML = "$" + projectData.project_funded + "/$" + projectData.project_goal;
+        const fundAmt = (Math.round(projectData.project_funded * 100) / 100).toFixed(2);
+        const goalAmt = (Math.round(projectData.project_goal * 100) / 100).toFixed(2);
+        projectGoal.innerHTML = `\$${fundAmt}/\$${goalAmt}`;
+
+        var projectGoalStatus = document.getElementById("project-goal-status");
+        if (fundAmt >= goalAmt) {
+            projectGoalStatus.innerHTML = "Fully funded!";
+        } else {
+            projectGoalStatus.innerHTML = "Not fully funded";
+        }
         // Genre
         var projectGenre = document.getElementById("project-genre");
         projectGenre.innerHTML = projectData.project_type;
@@ -69,30 +78,42 @@ function ViewProject(props) {
         var projectDeadline = document.getElementById("project-deadline");
         projectDeadline.innerHTML = projectData.project_deadline;
 
+        var directSupp = document.getElementById("direct-supports");
+        directSupp.innerHTML = projectData.direct_supports;
+
         projectData.project_pledges.forEach(pledge => {
             // Creating the Row
             var tr = document.createElement("tr");
             tr.className = "data";
             //tr.title = pledge.pledge_uid;
             // Creating the Cells
-            var pledgeSupporters = document.createElement("td");
-            pledgeSupporters.className = "data";
             var pledgeDescription = document.createElement("td");
             pledgeDescription.className = "data";
             var maxSupporters = document.createElement("td");
             maxSupporters.className = "data";
             var amount = document.createElement("td");
             amount.className = "data";
+            var pledgeSupporters = document.createElement("td");
+            pledgeSupporters.className = "data";
             // Creating the Text in the Cells
-            var pledgeDescriptionTxt = document.createTextNode(pledge.pledge_description);
+            
+            pledgeDescription.innerText = pledge.pledge_description;
 
             let maxSuppValue = pledge.pledge_max_supporters;
             if (maxSuppValue == 0) {
                 maxSuppValue = "Unlimited";
             }
-            var pledgeSupportersTxt = document.createTextNode(pledge.pledge_supporters);
             var maxSupportersTxt = document.createTextNode(maxSuppValue);
-            var amountTxt = document.createTextNode(pledge.pledge_amount);
+
+            const pledgeAmt = (Math.round(pledge.pledge_amount * 100) / 100).toFixed(2);
+            var amountTxt = document.createTextNode(`\$${pledgeAmt}`);
+
+            var supportersTxt = pledge.supporter_emails;
+            if (supportersTxt === undefined) {
+                supportersTxt = "";
+            }
+            pledgeSupporters.innerText = supportersTxt;
+
             var btn = document.createElement('input');
             btn.type = "button";
             btn.className = "delete-btn";
@@ -104,16 +125,18 @@ function ViewProject(props) {
             var pledgeTable = document.getElementById("pledge-table");
             // Appending the Text to the Cells
 
-            pledgeSupporters.appendChild(pledgeSupportersTxt);
-            pledgeDescription.appendChild(pledgeDescriptionTxt);
+            //pledgeDescription.appendChild(pledgeDescriptionTxt);
             maxSupporters.appendChild(maxSupportersTxt);
             amount.appendChild(amountTxt);
+            //pledgeSupporters.appendChild(pledgeSupportersTxt);
             // Appending the Cells to the Row
-            tr.appendChild(pledgeSupporters);
             tr.appendChild(pledgeDescription);
             tr.appendChild(maxSupporters);
             tr.appendChild(amount);
-            tr.appendChild(btn);
+            tr.appendChild(pledgeSupporters);
+            if (!projectData.project_launched) {
+                tr.appendChild(btn);
+            }
             // Appending the Row to the Table
             pledgeTable.appendChild(tr);
         });
@@ -123,8 +146,10 @@ function ViewProject(props) {
         let data = { "designer_email": props.email, "project_name": props.project };
         instance.post("/designer/project/view", data)
             .then(function (response) {
-                console.log("RESPONSE");
-                console.log(response)
+                console.log(response);
+                document.getElementById("create-pledge-btn").hidden = response.data.project.project_launched;
+                document.getElementById("delete-project-btn").hidden = response.data.project.project_launched;
+                
                 fillData(response.data.project)
             })
             .catch(function (error) {
@@ -148,6 +173,7 @@ function ViewProject(props) {
                 <br></br>
                 <label className="label-text">Goal: </label>
                 <div id="project-goal"></div>
+                <div id="project-goal-status"></div>
                 <br></br>
                 <label className="label-text">Genre: </label>
                 <div id="project-genre"></div>
@@ -158,13 +184,13 @@ function ViewProject(props) {
                 <label className="label-text">Deadline: </label>
                 <div id="project-deadline"></div>
                 <br></br>
-                <button className="action-button" type="login" onClick={() => deleteProject()}>Delete Project</button>
+                <button className="action-button" type="login" id="delete-project-btn" hidden onClick={() => deleteProject()}>Delete Project</button>
                 <br></br><br></br><br></br><br></br>
             </div>
 
             <div className="vp-split vp-right">
                 <div className="login-container">
-                    <button className="action-button" type="login" onClick={() => {
+                    <button className="action-button" id="create-pledge-btn" type="login" hidden onClick={() => {
                         navigate("/dashboard/viewproject/createpledge");
                     }}>Create Pledge</button>
                     <button className="action-button" type="login" onClick={() => {
@@ -174,13 +200,16 @@ function ViewProject(props) {
 
                     <table id="pledge-table" className="center">
                         <tr className="title-row">
-                            <th>Supporters</th>
                             <th>Pledge Description</th>
                             <th>Max Supporters</th>
                             <th>Amount</th>
+                            <th>Supporters</th>
                             <th>Delete Pledge</th>
                         </tr>
                     </table>
+                    <br /><br />
+                    <label className="label-text">Direct Supporters:</label>
+                    <div id="direct-supports"></div>
                 </div>
             </div>
         </div>
